@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\InlineScript\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Throwable;
 

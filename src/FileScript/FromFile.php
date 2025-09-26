@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\InlineScript;
+namespace Zmyslny\LaravelInlineScripts\FileScript;
 
 use Zmyslny\LaravelInlineScripts\Exceptions\FromFileException;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;

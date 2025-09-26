@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Zmyslny\LaravelInlineScripts\Examples;
 
 use Override;
-use Zmyslny\LaravelInlineScripts\InlineScript\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
 
 class ThemeInitScript extends FromFileWithPlaceholders
 {

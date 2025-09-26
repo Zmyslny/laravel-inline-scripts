@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\InlineScript;
+namespace Zmyslny\LaravelInlineScripts\FileScript;
 
 use Illuminate\Support\Str;
 use Override;

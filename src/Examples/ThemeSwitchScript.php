@@ -7,7 +7,7 @@ namespace Zmyslny\LaravelInlineScripts\Examples;
 use InvalidArgumentException;
 use Override;
 use Throwable;
-use Zmyslny\LaravelInlineScripts\InlineScript\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
 
 class ThemeSwitchScript extends FromFileWithPlaceholders
 {
