@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use App\Blade\BladeInlineScripts\InlineScript\FromFileScriptWithPlaceholders;
-use App\Blade\BladeInlineScripts\InlineScript\RenderableScript;
+use Zmyslny\LaravelInlineScripts\InlineScript\FromFileScriptWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Throwable;
 
 class BladeInlineScriptsFactory
