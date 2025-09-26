@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Facades;
+namespace Zmyslny\LaravelInlineScripts;
 
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Illuminate\Support\Facades\Facade;

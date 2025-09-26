@@ -13,6 +13,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
     #[Override]
     public function register(): void
     {
+        $this->app->singleton('blade-inline-scripts', BladeInlineScriptsFactory::class);
+
         $this->app->singleton(BladeDirectiveRegistrarInterface::class, BladeDirectiveRegistrar::class);
     }
 }
