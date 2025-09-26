@@ -3,7 +3,7 @@
   "description": "Provides a simple way to wrap you JS code, stored in file or files, and inline it as a custom blade directive.",
   "type": "package",
   "require": {
-    "php": "^8.3"
+    "php": "^8.4"
   },
   "require-dev": {
     "orchestra/testbench": "^10.6",
