@@ -1,0 +1,39 @@
+{
+  "name": "zmyslny/laravel-inline-scripts",
+  "description": "Provides a simple way to wrap you JS code, stored in file or files, and inline it as a custom blade directive.",
+  "type": "package",
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^10.6",
+    "laravel/pint": "^1.25",
+    "pestphp/pest": "^4.1",
+    "rector/rector": "^2.1",
+    "larastan/larastan": "^3.7"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Zmyslny\\LaravelInlineScripts\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ostrowski Maciej",
+      "email": "zmyslny@icloud.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
