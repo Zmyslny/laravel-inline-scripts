@@ -1,6 +1,6 @@
 {
   "name": "zmyslny/laravel-inline-scripts",
-  "description": "Provides a simple way to wrap you JS code, stored in file or files, and inline it as a custom blade directive.",
+  "description": "Provides a simple way to wrap you JS code, stored in file or files, and inline it in HTML as a custom blade directive.",
   "type": "package",
   "require": {
     "php": "^8.4"
