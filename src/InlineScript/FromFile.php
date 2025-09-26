@@ -13,7 +13,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 
-abstract class FromFileScript implements RenderableScript
+abstract class FromFile implements RenderableScript
 {
     protected string $fileName;
 

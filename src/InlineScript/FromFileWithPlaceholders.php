@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Override;
 use Zmyslny\LaravelInlineScripts\Contracts\ScriptWithPlaceholders;
 
-abstract class FromFileScriptWithPlaceholders extends FromFileScript implements ScriptWithPlaceholders
+abstract class FromFileWithPlaceholders extends FromFile implements ScriptWithPlaceholders
 {
     /**
      * @return array<string,string>

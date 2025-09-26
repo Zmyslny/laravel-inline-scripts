@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\InlineScript\FromFileScriptWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\InlineScript\FromFileWithPlaceholders;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Throwable;
 
@@ -80,8 +80,8 @@ class BladeInlineScriptsFactory
         string $directory,
         string $extension,
         array $placeholders = []
-    ): FromFileScriptWithPlaceholders {
-        return new class($filename, $directory, $extension, $placeholders) extends FromFileScriptWithPlaceholders
+    ): FromFileWithPlaceholders {
+        return new class($filename, $directory, $extension, $placeholders) extends FromFileWithPlaceholders
         {
             /**
              * @param  array<string,string>  $placeholders
