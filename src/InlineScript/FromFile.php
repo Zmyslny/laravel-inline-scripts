@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\InlineScript;
 
-use Zmyslny\LaravelInlineScripts\Exceptions\FromFileScriptException;
+use Zmyslny\LaravelInlineScripts\Exceptions\FromFileException;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -115,7 +115,7 @@ abstract class FromFile implements RenderableScript
         $path = $this->getFilePath();
 
         if ( ! $this->isFilePathValid()) {
-            throw new FromFileScriptException(sprintf('Script file not found: %s', $path));
+            throw new FromFileException(sprintf('Script file not found: %s', $path));
         }
 
         return (string) $this->files->get($path);
