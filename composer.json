@@ -1,6 +1,6 @@
 {
   "name": "zmyslny/laravel-inline-scripts",
-  "description": "Provides a simple way to wrap you JS code, stored in file or files, and inline it in HTML as a custom blade directive.",
+  "description": "Provides a simple way to wrap you JavaScript code, stored in a file or files, and inline it in HTML as a custom blade directive.",
   "type": "package",
   "require": {
     "php": "^8.4"
@@ -8,6 +8,7 @@
   "require-dev": {
     "larastan/larastan": "^3.7",
     "laravel/pint": "^1.25",
+    "laravel/sail": "^1.46",
     "orchestra/testbench": "^10.6",
     "pestphp/pest": "^4.1",
     "pestphp/pest-plugin-type-coverage": "^4.0",
