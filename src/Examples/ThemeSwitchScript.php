@@ -21,7 +21,7 @@ class ThemeSwitchScript extends FromFileWithPlaceholders
 
     public function __construct(
         public string $key = self::DEFAULT_KEY {
-            set  {
+            set {
                 throw_if( ! $this->isAcceptableKey($value), InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', self::KEY_PATTERN));
 
                 $this->key = $value;

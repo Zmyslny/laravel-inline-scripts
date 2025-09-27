@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
 use Zmyslny\LaravelInlineScripts\BladeInlineScripts;
+use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 
 uses(Tests\TestCase::class);
@@ -280,7 +280,7 @@ test('doNotAddHashToScriptId disables hash addition to script id', function (): 
 
 test('registerAs allows register renderable script under custom blade directive', function (): void {
     // Arrange
-    $registrar = app(\Zmyslny\LaravelInlineScripts\BladeDirectiveRegistrar::class);
+    $registrar = app(Zmyslny\LaravelInlineScripts\BladeDirectiveRegistrar::class);
 
     $script = new class implements RenderableScript
     {

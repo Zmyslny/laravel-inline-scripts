@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar as BladeDirectiveRegistrarInterface;
 use Illuminate\Support\ServiceProvider;
 use Override;
+use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar as BladeDirectiveRegistrarInterface;
 
 class BladeInlineScriptsProvider extends ServiceProvider
 {

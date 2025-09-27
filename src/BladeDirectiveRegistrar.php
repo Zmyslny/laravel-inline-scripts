@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar as BladeDirectiveRegistrarInterface;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\Compilers\BladeCompiler;
 use Throwable;
+use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar as BladeDirectiveRegistrarInterface;
 use Zmyslny\LaravelInlineScripts\Exceptions\BladeInlineScriptsException;
 
 class BladeDirectiveRegistrar implements BladeDirectiveRegistrarInterface

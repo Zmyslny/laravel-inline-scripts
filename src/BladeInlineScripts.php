@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
-use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Throwable;
+use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
+use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Zmyslny\LaravelInlineScripts\Exceptions\BladeInlineScriptsException;
 
 class BladeInlineScripts

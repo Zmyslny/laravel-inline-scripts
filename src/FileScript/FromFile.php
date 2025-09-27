@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\FileScript;
 
-use Zmyslny\LaravelInlineScripts\Exceptions\FromFileException;
-use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
+use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
+use Zmyslny\LaravelInlineScripts\Exceptions\FromFileException;
 
 abstract class FromFile implements RenderableScript
 {

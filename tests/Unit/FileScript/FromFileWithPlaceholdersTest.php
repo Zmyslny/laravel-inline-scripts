@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
 
 uses(Tests\TestCase::class);

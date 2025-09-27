@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\BladeDirectiveRegistrar;
-use Zmyslny\LaravelInlineScripts\Exceptions\BladeInlineScriptsException;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\Compilers\BladeCompiler;
+use Zmyslny\LaravelInlineScripts\BladeDirectiveRegistrar;
+use Zmyslny\LaravelInlineScripts\Exceptions\BladeInlineScriptsException;
 
 uses(Tests\TestCase::class);
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts;
 
-use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Illuminate\Support\Facades\Facade;
+use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 
 /**
  * @method static BladeInlineScriptsFacade take(RenderableScript ...$inlineScripts)
