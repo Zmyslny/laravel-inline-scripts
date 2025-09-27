@@ -26,11 +26,16 @@
     }
   },
   "scripts": {
+    "test:unit": "pest --parallel",
     "format": [
       "pint"
     ],
+    "test:format": [
+      "pint --test"
+    ],
     "test": [
-      "@test:format"
+      "@test:format",
+      "@test:unit"
     ]
   },
   "authors": [
