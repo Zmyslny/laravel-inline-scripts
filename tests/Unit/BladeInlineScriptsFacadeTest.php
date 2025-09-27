@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\BladeInlineScripts;
+use Zmyslny\LaravelInlineScripts\BladeInlineScriptsCore;
 use Zmyslny\LaravelInlineScripts\BladeInlineScriptsFacade;
 use Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates\ThemeInitScript;
 use Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates\ThemeSwitchScript;
@@ -17,5 +17,5 @@ test('"take" can create BladeInlineScripts instance', function (): void {
     );
 
     // Assert
-    expect($instance)->toBeInstanceOf(BladeInlineScripts::class);
+    expect($instance)->toBeInstanceOf(BladeInlineScriptsCore::class);
 });

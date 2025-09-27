@@ -10,9 +10,9 @@ use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class BladeInlineScriptsFactory
 {
-    public function take(RenderableScript ...$scripts): BladeInlineScripts
+    public function take(RenderableScript ...$scripts): BladeInlineScriptsCore
     {
-        return new BladeInlineScripts(...$scripts);
+        return new BladeInlineScriptsCore(...$scripts);
     }
 
     /**
@@ -20,7 +20,7 @@ class BladeInlineScriptsFactory
      *
      * @throws Throwable
      */
-    public function takeFile(string $path, array $placeholders = []): BladeInlineScripts
+    public function takeFile(string $path, array $placeholders = []): BladeInlineScriptsCore
     {
         [$dir, $filename, $extension] = $this->extractedPath($path);
 
@@ -39,7 +39,7 @@ class BladeInlineScriptsFactory
      *
      * @throws Throwable
      */
-    public function takeFiles(array|string ...$paths): BladeInlineScripts
+    public function takeFiles(array|string ...$paths): BladeInlineScriptsCore
     {
         $instances = [];
 

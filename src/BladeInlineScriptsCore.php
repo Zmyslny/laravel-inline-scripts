@@ -11,7 +11,7 @@ use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 use Zmyslny\LaravelInlineScripts\Exceptions\BladeInlineScriptsException;
 
-class BladeInlineScripts
+class BladeInlineScriptsCore
 {
     /** @var array<RenderableScript> */
     protected array $scripts = [];

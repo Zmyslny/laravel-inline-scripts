@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\BladeInlineScripts;
+use Zmyslny\LaravelInlineScripts\BladeInlineScriptsCore;
 use Zmyslny\LaravelInlineScripts\Contracts\BladeDirectiveRegistrar;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
 
@@ -10,7 +10,7 @@ uses(Tests\TestCase::class);
 
 it('resolves BladeDirectiveRegistrar from IoC by default on construct', function (): void {
     // Arrange & Act
-    $inline = new BladeInlineScripts();
+    $inline = new BladeInlineScriptsCore();
 
     // Assert
     $resolvedFromContainer = app(BladeDirectiveRegistrar::class);
@@ -27,7 +27,7 @@ it('allows setting BladeDirectiveRegistrar via setBladeRegistrar and returns sel
         public function register(string $name, callable $renderer): void {}
     };
 
-    $inline = new BladeInlineScripts();
+    $inline = new BladeInlineScriptsCore();
 
     // Act
     $result = $inline->setBladeRegistrar($customRegistrar);
@@ -41,7 +41,7 @@ it('allows setting BladeDirectiveRegistrar via setBladeRegistrar and returns sel
 
 it('allows setting a custom scriptTagId, uses it when rendering and returns self', function (): void {
     // Arrange
-    $inline = new BladeInlineScripts();
+    $inline = new BladeInlineScriptsCore();
 
     // Act
     $result = $inline->setScriptTagId('my-custom-id');
@@ -82,7 +82,7 @@ it('auto-generates scriptTagId by joining script names and adding a hash when no
         }
     };
 
-    $inline = new BladeInlineScripts($script1, $script2);
+    $inline = new BladeInlineScriptsCore($script1, $script2);
 
     // Act
     $id = $inline->getScriptTagId();
@@ -122,7 +122,7 @@ it('wraps scripts code inside a single {script} tag with the computed id', funct
         }
     };
 
-    $inline = new BladeInlineScripts($script1, $script2);
+    $inline = new BladeInlineScriptsCore($script1, $script2);
 
     // Act
     $id = $inline->getScriptTagId();
@@ -139,7 +139,7 @@ it('wraps scripts code inside a single {script} tag with the computed id', funct
 
 test('getScriptsCombinedCode returns empty string when no scripts are provided', function (): void {
     // Arrange
-    $inline = new BladeInlineScripts();
+    $inline = new BladeInlineScriptsCore();
 
     // Act
     $code = $inline->getScriptsCombinedCode();
@@ -176,7 +176,7 @@ test('getScriptsCombinedCode concatenates script outputs with PHP_EOL and preser
         }
     };
 
-    $inline = new BladeInlineScripts($script1, $script2);
+    $inline = new BladeInlineScriptsCore($script1, $script2);
 
     // Act
     $code = $inline->getScriptsCombinedCode();
@@ -223,7 +223,7 @@ test('getScriptsCombinedCode caches the result so scripts are rendered only once
         }
     };
 
-    $inline = new BladeInlineScripts($scriptA, $scriptB);
+    $inline = new BladeInlineScriptsCore($scriptA, $scriptB);
 
     // Act
     $first = $inline->getScriptsCombinedCode();
@@ -264,7 +264,7 @@ test('doNotAddHashToScriptId disables hash addition to script id', function (): 
         }
     };
 
-    $inline = new BladeInlineScripts($script1, $script2);
+    $inline = new BladeInlineScriptsCore($script1, $script2);
 
     // Act
     $inline->doNotAddHashToScriptId();
@@ -295,7 +295,7 @@ test('registerAs allows register renderable script under custom blade directive'
         }
     };
 
-    $inline = new BladeInlineScripts($script);
+    $inline = new BladeInlineScriptsCore($script);
     $inline->setBladeRegistrar($registrar);
 
     // Act
