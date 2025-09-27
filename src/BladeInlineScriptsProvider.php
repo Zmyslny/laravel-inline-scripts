@@ -23,10 +23,16 @@ class BladeInlineScriptsProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/js/theme-switch-two-states/theme-init.js' => resource_path('js/theme-switch-two-states/theme-init.js'),
             __DIR__.'/../resources/js/theme-switch-two-states/theme-switch.js' => resource_path('js/theme-switch-two-states/theme-switch.js'),
+        ], ['theme-switch-two-states-js', 'theme-switch-two-states-all']);
+
+        $this->publishes([
             __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeInitScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeInitScript.php'),
             __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeSwitchScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeSwitchScript.php'),
+        ], ['theme-switch-two-states-classes', 'theme-switch-two-states-all']);
+
+        $this->publishes([
             __DIR__.'/../tests/js/theme-switch-two-states/theme-init.test.js' => base_path('tests/js/theme-switch-two-states/theme-init.test.js'),
             __DIR__.'/../tests/js/theme-switch-two-states/theme-switch.test.js' => base_path('tests/js/theme-switch-two-states/theme-switch.test.js'),
-        ], 'theme-switch-two-states');
+        ], ['theme-switch-two-states-js-tests', 'theme-switch-two-states-all']);
     }
 }
