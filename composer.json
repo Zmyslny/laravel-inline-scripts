@@ -34,6 +34,7 @@
       "npm run lint:check"
     ],
     "test:unit": "pest --parallel",
+    "test:unit:co": "pest --parallel --coverage",
     "test:js": "npm run test:js",
     "format": [
       "pint",
