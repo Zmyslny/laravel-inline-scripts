@@ -23,7 +23,7 @@ it('throws an exception when the $key value being set is empty', function (): vo
     $script = new ThemeSwitchScript();
 
     // Act & Assert
-    expect(fn () => $script->key = '')
+    expect(fn () => $script->setKey(''))
         ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
 });
 
@@ -32,7 +32,7 @@ it('throws an exception when the $key value being set is longer than one letter'
     $script = new ThemeSwitchScript();
 
     // Act & Assert
-    expect(fn () => $script->key = 'too')
+    expect(fn () => $script->setKey('too'))
         ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
 });
 
@@ -41,7 +41,7 @@ it('throws an exception when the $key is a single letter but does not match KEY_
     $script = new ThemeSwitchScript();
 
     // Act & Assert
-    expect(fn () => $script->key = 'A')
+    expect(fn () => $script->setKey('A'))
         ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
 });
 
@@ -50,10 +50,10 @@ it('sets $key correctly for a valid value', function (): void {
     $script = new ThemeSwitchScript();
 
     // Act
-    $script->key = 't';
+    $script->setKey('t');
 
     // Assert
-    expect($script->key)->toBe('t');
+    expect($script->getKey())->toBe('t');
 });
 
 it('sets $key correctly for a valid value through constructor', function (): void {
@@ -61,13 +61,13 @@ it('sets $key correctly for a valid value through constructor', function (): voi
     $script = new ThemeSwitchScript('t');
 
     // Assert
-    expect($script->key)->toBe('t');
+    expect($script->getKey())->toBe('t');
 });
 
 it('returns proper values from getPlaceholders()', function (): void {
     // Arrange
     $script = new ThemeSwitchScript();
-    $script->key = 'k';
+    $script->setKey('k');
 
     // Act
     $placeholders = $script->getPlaceholders();

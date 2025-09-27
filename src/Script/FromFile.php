@@ -52,9 +52,6 @@ abstract class FromFile implements RenderableScript
         return $this->files;
     }
 
-    /**
-     * @throws Throwable
-     */
     public function getName(): string
     {
         return $this->fileName;

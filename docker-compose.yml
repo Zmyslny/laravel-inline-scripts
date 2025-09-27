@@ -1,11 +1,11 @@
 services:
     laravel.test:
         build:
-            context: ./runtimes/8.4
+            context: ./runtimes/8.3
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: inline-scripts-8.4/app
+        image: inline-scripts-8.3/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
