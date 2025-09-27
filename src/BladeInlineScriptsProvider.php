@@ -17,4 +17,14 @@ class BladeInlineScriptsProvider extends ServiceProvider
 
         $this->app->singleton(BladeDirectiveRegistrarInterface::class, BladeDirectiveRegistrar::class);
     }
+
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../resources/js/theme-switch-two-states/theme-init.js' => resource_path('js/theme-switch-two-states/theme-init.js'),
+            __DIR__.'/../resources/js/theme-switch-two-states/theme-switch.js' => resource_path('js/theme-switch-two-states/theme-switch.js'),
+            __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeInitScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeInitScript.php'),
+            __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeSwitchScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeSwitchScript.php'),
+        ], 'theme-switch-two-states');
+    }
 }

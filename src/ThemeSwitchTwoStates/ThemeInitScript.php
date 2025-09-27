@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates;
+namespace Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates;
 
 use Override;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class ThemeInitScript extends FromFileWithPlaceholders
 {
-    protected string $fileName = 'themeInit';
+    protected string $fileName = 'theme-init';
 
-    protected string $fileDirectory = __DIR__;
+    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 
     /**
      * @return array<string,string>

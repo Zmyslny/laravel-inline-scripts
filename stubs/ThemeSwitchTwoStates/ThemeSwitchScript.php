@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates;
+namespace App\Blade\ThemeSwitchTwoStates;
 
 use InvalidArgumentException;
 use Override;
 use Throwable;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates\ThemeTypeEnum;
 
 class ThemeSwitchScript extends FromFileWithPlaceholders
 {
@@ -15,14 +16,14 @@ class ThemeSwitchScript extends FromFileWithPlaceholders
 
     public const string KEY_PATTERN = '/^[a-z]$/';
 
-    protected string $fileName = 'themeSwitch';
-
-    protected string $fileDirectory = __DIR__;
+    protected string $fileName = 'theme-switch';
 
     protected string $key;
 
     public function __construct(string $key = self::DEFAULT_KEY)
     {
+        $this->fileDirectory = resource_path('js/theme-switch-two-states');
+
         $this->setKey($key);
 
         parent::__construct();
