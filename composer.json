@@ -25,6 +25,14 @@
       "Tests\\": "tests/"
     }
   },
+  "scripts": {
+    "format": [
+      "pint"
+    ],
+    "test": [
+      "@test:format"
+    ]
+  },
   "authors": [
     {
       "name": "Ostrowski Maciej",
