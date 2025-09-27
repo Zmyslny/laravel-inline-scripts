@@ -34,8 +34,12 @@
       "pint --test"
     ],
     "test:stan": "phpstan",
+    "test:refa": "rector --dry-run",
+    "refa": "rector",
     "test": [
       "@test:format",
+      "@test:stan",
+      "@test:refa",
       "@test:unit"
     ]
   },
