@@ -33,6 +33,7 @@
     "test:format": [
       "pint --test"
     ],
+    "test:stan": "phpstan",
     "test": [
       "@test:format",
       "@test:unit"

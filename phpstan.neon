@@ -1,0 +1,15 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src/
+
+    excludePaths:
+
+    # Level 10 is the highest level. Docs https://phpstan.org/user-guide/rule-levels
+    level: 10
+
+
+
