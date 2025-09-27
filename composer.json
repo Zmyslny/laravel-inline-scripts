@@ -27,12 +27,21 @@
     }
   },
   "scripts": {
+    "lint": [
+      "npm run lint"
+    ],
+    "test:lint": [
+      "npm run lint:check"
+    ],
     "test:unit": "pest --parallel",
+    "test:js": "npm run test:js",
     "format": [
-      "pint"
+      "pint",
+      "npm run format"
     ],
     "test:format": [
-      "pint --test"
+      "pint --test",
+      "npm run format:check"
     ],
     "test:stan": "phpstan",
     "test:refa": "rector --dry-run",
@@ -41,7 +50,9 @@
       "@test:format",
       "@test:stan",
       "@test:refa",
-      "@test:unit"
+      "@test:unit",
+      "@test:lint",
+      "@test:js"
     ]
   },
   "authors": [

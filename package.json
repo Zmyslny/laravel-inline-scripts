@@ -5,6 +5,7 @@
         "format": "prettier --write resources/ tests/js/",
         "format:check": "prettier --check resources/ tests/js/",
         "lint": "eslint . --fix",
+        "lint:check": "eslint .",
         "test:js": "vitest run"
     },
     "devDependencies": {
