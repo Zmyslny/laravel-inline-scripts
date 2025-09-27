@@ -67,11 +67,7 @@ class BladeInlineScripts
 
     public function getScriptTagId(): string
     {
-        if ($this->scriptTagId !== null) {
-            return $this->scriptTagId;
-        }
-
-        return $this->prepareScriptTagId();
+        return $this->scriptTagId ?? $this->prepareScriptTagId();
     }
 
     /**
