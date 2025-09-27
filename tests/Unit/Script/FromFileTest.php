@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Filesystem\Filesystem;
 use Zmyslny\LaravelInlineScripts\Exceptions\FromFileException;
-use Zmyslny\LaravelInlineScripts\FileScript\FromFile;
+use Zmyslny\LaravelInlineScripts\Script\FromFile;
 
 uses(Tests\TestCase::class);
 

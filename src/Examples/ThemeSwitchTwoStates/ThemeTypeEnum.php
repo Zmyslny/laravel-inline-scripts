@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Examples;
+namespace Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates;
 
 enum ThemeTypeEnum: string
 {

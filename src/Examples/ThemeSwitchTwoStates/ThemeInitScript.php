@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Examples;
+namespace Zmyslny\LaravelInlineScripts\Examples\ThemeSwitchTwoStates;
 
 use Override;
-use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class ThemeInitScript extends FromFileWithPlaceholders
 {

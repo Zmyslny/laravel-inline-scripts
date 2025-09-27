@@ -6,7 +6,7 @@ namespace Zmyslny\LaravelInlineScripts;
 
 use Throwable;
 use Zmyslny\LaravelInlineScripts\Contracts\RenderableScript;
-use Zmyslny\LaravelInlineScripts\FileScript\FromFileWithPlaceholders;
+use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class BladeInlineScriptsFactory
 {
