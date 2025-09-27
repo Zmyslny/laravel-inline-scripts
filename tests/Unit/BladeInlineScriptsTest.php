@@ -236,7 +236,7 @@ test('getScriptsCombinedCode caches the result so scripts are rendered only once
         ->and($renders['b'])->toBe(1);
 });
 
-test('doNotAddHashToScriptId() disables hash addition to script id', function (): void {
+test('doNotAddHashToScriptId disables hash addition to script id', function (): void {
     // Arrange
     $script1 = new class implements RenderableScript
     {
@@ -276,4 +276,38 @@ test('doNotAddHashToScriptId() disables hash addition to script id', function ()
     expect($id)
         ->toBe('alpha-beta')
         ->and($html)->toContain('id="alpha-beta"');
+});
+
+test('registerAs allows register renderable script under custom blade directive', function (): void {
+    // Arrange
+    $registrar = app(\Zmyslny\LaravelInlineScripts\BladeDirectiveRegistrar::class);
+
+    $script = new class implements RenderableScript
+    {
+        public function render(): string
+        {
+            return 'console.log("test myDirective directive");';
+        }
+
+        public function getName(): string
+        {
+            return 'TestScript';
+        }
+    };
+
+    $inline = new BladeInlineScripts($script);
+    $inline->setBladeRegistrar($registrar);
+
+    // Act
+    $inline->registerAs('myDirective');
+
+    // Assert
+    $isRegistered = isset($registrar->blade->getCustomDirectives()['myDirective']);
+    expect($isRegistered)->toBeTrue();
+
+    $result = ($registrar->blade->getCustomDirectives()['myDirective'])();
+    expect($result)->toBeString()
+        ->toContain('<script id=')
+        ->toContain('console.log("test myDirective directive");')
+        ->toContain('</script>');
 });
