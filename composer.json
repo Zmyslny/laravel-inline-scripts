@@ -1,6 +1,7 @@
 {
   "name": "zmyslny/laravel-inline-scripts",
   "description": "Provides an easy way to convert your JavaScript code, stored in a file or files, into a custom blade directive and inline it in HTML.",
+  "license": "MIT",
   "type": "package",
   "require": {
     "php": "^8.3",
@@ -15,7 +16,6 @@
     "pestphp/pest-plugin-type-coverage": "^4.0",
     "rector/rector": "^2.1"
   },
-  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Zmyslny\\LaravelInlineScripts\\": "src/"
