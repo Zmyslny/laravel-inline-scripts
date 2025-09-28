@@ -53,7 +53,7 @@
       "@test:format",
       "@test:stan",
       "@test:refa",
-      "@test:unit",
+      "@test:unit:co",
       "@test:lint",
       "@test:js"
     ]
