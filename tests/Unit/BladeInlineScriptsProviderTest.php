@@ -146,6 +146,35 @@ test('boot method publishes theme-switch-two-states JS test files', function ():
         ->and($themeSwitchTest)->not->toBeNull();
 });
 
+test('boot method publishes theme-switch-two-states PHP test files', function (): void {
+    // Arrange
+    $app = new Application();
+    $provider = new BladeInlineScriptsProvider($app);
+
+    // Act
+    $provider->boot();
+
+    // Assert
+    $published = ServiceProvider::$publishes[BladeInlineScriptsProvider::class] ?? [];
+
+    $expectedPhpTestPublishes = [];
+    foreach ($published as $source => $destination) {
+        if (str_contains($source, 'tests/Unit/ThemeSwitchTwoStates')) {
+            $expectedPhpTestPublishes[$source] = $destination;
+        }
+    }
+
+    expect($expectedPhpTestPublishes)->not->toBeEmpty();
+
+    // Check specific PHP test files are published
+    $sourceFiles = array_keys($expectedPhpTestPublishes);
+    $themeInitTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeInitScriptTest.php'));
+    $themeSwitchTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeSwitchScriptTest.php'));
+
+    expect($themeInitTest)->not->toBeNull()
+        ->and($themeSwitchTest)->not->toBeNull();
+});
+
 test('boot method sets up correct publish groups', function (): void {
     // Arrange
     $app = new Application();
@@ -157,18 +186,20 @@ test('boot method sets up correct publish groups', function (): void {
     // Assert
     $groups = ServiceProvider::$publishGroups ?? [];
 
-    expect($groups)->toHaveKey('theme-switch-two-states-js')
-        ->and($groups)->toHaveKey('theme-switch-two-states-classes')
-        ->and($groups)->toHaveKey('theme-switch-two-states-js-tests')
-        ->and($groups)->toHaveKey('theme-switch-two-states-all');
+    expect($groups)->toHaveKey('theme-switch-2-states-js')
+        ->and($groups)->toHaveKey('theme-switch-2-states-php')
+        ->and($groups)->toHaveKey('theme-switch-2-states-js-tests')
+        ->and($groups)->toHaveKey('theme-switch-2-states-php-tests')
+        ->and($groups)->toHaveKey('theme-switch-2-states-all');
 
-    // Verify 'theme-switch-two-states-all' includes all the files
-    $allGroupFiles = $groups['theme-switch-two-states-all'] ?? [];
-    $jsFiles = $groups['theme-switch-two-states-js'] ?? [];
-    $classFiles = $groups['theme-switch-two-states-classes'] ?? [];
-    $testFiles = $groups['theme-switch-two-states-js-tests'] ?? [];
+    // Verify 'theme-switch-2-states-all' includes all the files
+    $allGroupFiles = $groups['theme-switch-2-states-all'] ?? [];
+    $jsFiles = $groups['theme-switch-2-states-js'] ?? [];
+    $phpFiles = $groups['theme-switch-2-states-php'] ?? [];
+    $jsTestFiles = $groups['theme-switch-2-states-js-tests'] ?? [];
+    $phpTestFiles = $groups['theme-switch-2-states-php-tests'] ?? [];
 
-    $expectedAllFiles = array_merge($jsFiles, $classFiles, $testFiles);
+    $expectedAllFiles = array_merge($jsFiles, $phpFiles, $jsTestFiles, $phpTestFiles);
 
     expect(count($allGroupFiles))->toBe(count($expectedAllFiles));
 });
@@ -191,6 +222,8 @@ test('published files have correct destination paths', function (): void {
             expect($destination)->toContain('app/Blade/ThemeSwitchTwoStates');
         } elseif (str_contains($source, 'tests/js')) {
             expect($destination)->toContain('tests/js/theme-switch-two-states');
+        } elseif (str_contains($source, 'tests/Unit/ThemeSwitchTwoStates')) {
+            expect($destination)->toContain('tests/Unit/ThemeSwitchTwoStates');
         }
     }
 });
