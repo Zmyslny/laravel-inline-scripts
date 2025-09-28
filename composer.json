@@ -35,7 +35,7 @@
     ],
     "test:unit": "pest --parallel",
     "test:unit:co": "pest --parallel --coverage --min=100",
-    "test:type-co": "pest --type-coverage --parallel --min=100",
+    "test:type-co": "pest --parallel --type-coverage --min=100",
     "test:js": "npm run test:js",
     "format": [
       "pint",
