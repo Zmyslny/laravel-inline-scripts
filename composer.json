@@ -34,7 +34,8 @@
       "npm run lint:check"
     ],
     "test:unit": "pest --parallel",
-    "test:unit:co": "pest --parallel --coverage",
+    "test:unit:co": "pest --parallel --coverage --min=100",
+    "test:type-co": "pest --type-coverage --parallel --min=100",
     "test:js": "npm run test:js",
     "format": [
       "pint",
@@ -48,6 +49,7 @@
     "test:refa": "rector --dry-run",
     "refa": "rector",
     "test": [
+      "@test:type-co",
       "@test:format",
       "@test:stan",
       "@test:refa",
