@@ -5,7 +5,7 @@
 export default {
     overrides: [
         {
-            files: "tests/js/**/*.test.js",
+            files: ["tests/js/**/*.test.js", "resources/js/**/*.js"],
             options: {
                 printWidth: 140,
             },

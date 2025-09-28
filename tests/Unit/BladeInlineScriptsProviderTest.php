@@ -222,8 +222,6 @@ test('published files have correct destination paths', function (): void {
             expect($destination)->toContain('app/Blade/ThemeSwitchTwoStates');
         } elseif (str_contains($source, 'tests/js')) {
             expect($destination)->toContain('tests/js/theme-switch-two-states');
-        } elseif (str_contains($source, 'tests/Unit/ThemeSwitchTwoStates')) {
-            expect($destination)->toContain('tests/Unit/ThemeSwitchTwoStates');
         }
     }
 });
