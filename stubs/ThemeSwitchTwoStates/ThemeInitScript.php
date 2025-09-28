@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Blade\ThemeSwitchTwoStates;
 
-use Override;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 use Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates\ThemeTypeEnum;
 
@@ -22,7 +21,6 @@ class ThemeInitScript extends FromFileWithPlaceholders
     /**
      * @return array<string,string>
      */
-    #[Override]
     public function getPlaceholders(): array
     {
         return [

@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace App\Blade\ThemeSwitchTwoStates;
 
 use InvalidArgumentException;
-use Override;
 use Throwable;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 use Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates\ThemeTypeEnum;
 
 class ThemeSwitchScript extends FromFileWithPlaceholders
 {
-    public const string DEFAULT_KEY = 'd';
+    public const DEFAULT_KEY = 'd';
 
-    public const string KEY_PATTERN = '/^[a-z]$/';
+    public const KEY_PATTERN = '/^[a-z]$/';
 
     protected string $fileName = 'theme-switch';
 
@@ -47,7 +46,6 @@ class ThemeSwitchScript extends FromFileWithPlaceholders
     /**
      * @return array<string,string>
      */
-    #[Override]
     public function getPlaceholders(): array
     {
         return [

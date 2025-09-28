@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates;
 
-use Override;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class ThemeInitScript extends FromFileWithPlaceholders
@@ -16,7 +15,6 @@ class ThemeInitScript extends FromFileWithPlaceholders
     /**
      * @return array<string,string>
      */
-    #[Override]
     public function getPlaceholders(): array
     {
         return [
