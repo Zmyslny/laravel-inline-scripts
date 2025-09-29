@@ -21,8 +21,9 @@ class BladeInlineScriptsProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/js/theme-switch-two-states/theme-init.js' => resource_path('js/theme-switch-two-states/theme-init.js'),
             __DIR__.'/../resources/js/theme-switch-two-states/theme-switch.js' => resource_path('js/theme-switch-two-states/theme-switch.js'),
-        ], ['theme-switch-2-states-js', 'theme-switch-2-states-all']);
+        ], ['theme-switch-2-states-js', 'theme-switch-2-states-php', 'theme-switch-2-states-all']);
 
+        // The PHP classes need JS files to also be published because they reference them.
         $this->publishes([
             __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeInitScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeInitScript.php'),
             __DIR__.'/../stubs/ThemeSwitchTwoStates/ThemeSwitchScript.php' => base_path('app/Blade/ThemeSwitchTwoStates/ThemeSwitchScript.php'),
