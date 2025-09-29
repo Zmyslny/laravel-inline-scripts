@@ -99,4 +99,108 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
     expect(localStorage.getItem("theme")).toBe(DEFAULT_DARK);
   });
+
+  it("does not toggle when an input field is focused", () => {
+    runThemeSwitchScript();
+
+    // Create and focus an input element
+    const input = document.createElement("input");
+    document.body.appendChild(input);
+    input.focus();
+
+    expect(document.activeElement).toBe(input);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+
+    // Try to toggle while input is focused - should not work
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+    expect(localStorage.getItem("theme")).toBe(null);
+
+    // Clean up
+    document.body.removeChild(input);
+  });
+
+  it("does not toggle when a textarea is focused", () => {
+    runThemeSwitchScript();
+
+    // Create and focus a textarea element
+    const textarea = document.createElement("textarea");
+    document.body.appendChild(textarea);
+    textarea.focus();
+
+    expect(document.activeElement).toBe(textarea);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+
+    // Try to toggle while textarea is focused - should not work
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+    expect(localStorage.getItem("theme")).toBe(null);
+
+    // Clean up
+    document.body.removeChild(textarea);
+  });
+
+  it("does not toggle when a select field is focused", () => {
+    runThemeSwitchScript();
+
+    // Create and focus a select element
+    const select = document.createElement("select");
+    const option = document.createElement("option");
+    option.value = "test";
+    option.text = "Test Option";
+    select.appendChild(option);
+    document.body.appendChild(select);
+    select.focus();
+
+    expect(document.activeElement).toBe(select);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+
+    // Try to toggle while select is focused - should not work
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+    expect(localStorage.getItem("theme")).toBe(null);
+
+    // Clean up
+    document.body.removeChild(select);
+  });
+
+  it("does not toggle when a contentEditable element is focused", () => {
+    runThemeSwitchScript();
+
+    // Create and focus a contentEditable element
+    const div = document.createElement("div");
+    div.contentEditable = "true";
+    document.body.appendChild(div);
+    div.focus();
+
+    expect(document.activeElement).toBe(div);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+
+    // Try to toggle while contentEditable is focused - should not work
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+    expect(localStorage.getItem("theme")).toBe(null);
+
+    // Clean up
+    document.body.removeChild(div);
+  });
+
+  it("toggles normally when input is unfocused", () => {
+    runThemeSwitchScript();
+
+    // Create an input but don't focus it
+    const input = document.createElement("input");
+    document.body.appendChild(input);
+
+    expect(document.activeElement).not.toBe(input);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+
+    // Toggle should work normally when input exists but is not focused
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
+    expect(localStorage.getItem("theme")).toBe(DEFAULT_DARK);
+
+    // Clean up
+    document.body.removeChild(input);
+  });
 });
