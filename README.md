@@ -132,7 +132,13 @@ You can create a custom PHP class to process or modify your JavaScript code befo
 
 Create a custom PHP processor class implementing the `RenderableScript` or `ScriptWithPlaceholders` interface and register it using the `BladeInlineScripts::take()` method.
 
-We have a built-in processor for the theme switch scripts as well. To use it, follow these steps:
+We have prepared abstract base implementations for each of the interfaces:
+```php
+abstract class FromFile implements RenderableScript
+abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders
+```
+
+To show them in action, we have created PHP processors extending the base classes for the theme switch scripts:
 
 **Step 1**: Publish the built-in theme switch scripts with the PHP processor:
 
