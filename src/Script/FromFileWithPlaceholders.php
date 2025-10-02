@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Zmyslny\LaravelInlineScripts\Script;
 
 use Illuminate\Support\Str;
-use Override;
 use Zmyslny\LaravelInlineScripts\Contracts\ScriptWithPlaceholders;
 
 abstract class FromFileWithPlaceholders extends FromFile implements ScriptWithPlaceholders
@@ -18,7 +17,6 @@ abstract class FromFileWithPlaceholders extends FromFile implements ScriptWithPl
         return [];
     }
 
-    #[Override]
     public function render(): string
     {
         $content = parent::render();
