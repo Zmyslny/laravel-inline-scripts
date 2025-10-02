@@ -6,8 +6,8 @@ namespace App\Blade\ThemeSwitchTwoStates;
 
 use InvalidArgumentException;
 use Throwable;
+use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
-use Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates\ThemeTypeEnum;
 
 class ThemeSwitchScript extends FromFileWithPlaceholders
 {

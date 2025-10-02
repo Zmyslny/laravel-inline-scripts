@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\ThemeSwitchTwoStates;
+namespace Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates;
 
 use InvalidArgumentException;
 use Throwable;
@@ -16,7 +16,7 @@ class ThemeSwitchScript extends FromFileWithPlaceholders
 
     protected string $fileName = 'theme-switch';
 
-    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
+    protected string $fileDirectory = __DIR__.'/../../../resources/js/theme-switch-two-states';
 
     protected string $key;
 
