@@ -7,7 +7,7 @@ Allows ✨:
 - process / modify the script in a dedicated PHP class.
 
 Extra - build in **ready-to-use** scripts:
- - theme switching script
+ - theme switching script (two states - light/dark)
  - _more coming later_
 
 ### Requirements
@@ -69,7 +69,7 @@ Inline scripts are JavaScript code blocks embedded directly into HTML documents.
 </head>
 ```
 
-This package makes it much more convenient by allowing you to keep inline scripts in separate JavaScript files, which enables:
+This package makes it much more convenient by allowing you to keep inline scripts in separate JavaScript files, which enables ✨:
 
 - **Complex script processing** using dedicated PHP classes _(see example below)_
 - **Variable passing** from PHP to JavaScript _(see example below)_
@@ -90,6 +90,8 @@ That will copy the scripts to `resources/js/theme-switch-two-states/[theme-init.
 
 `theme-init.js` - initializes the theme based on the user's previous choice stored in `localStorage`.  
 `theme-switch.js` - a function to toggle between light and dark themes by hitting a selected KEY and saves the choice in `localStorage`.
+
+They switch theme by adding/removing a CSS class to/from the `<html>` element.
 
 **Step 2**: Register the scripts in your `AppServiceProvider`:
 
@@ -132,13 +134,14 @@ You can create a custom PHP class to process or modify your JavaScript code befo
 
 Create a custom PHP processor class implementing the `RenderableScript` or `ScriptWithPlaceholders` interface and register it using the `BladeInlineScripts::take()` method.
 
-We have prepared abstract base implementations for each of the interfaces:
+I have prepared abstract base implementations for each of the interfaces:
 ```php
 abstract class FromFile implements RenderableScript
+
 abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders
 ```
 
-To show them in action, we have created PHP processors extending the base classes for the theme switch scripts:
+To show them in action, I have created PHP processors extending the base classes for the theme switch scripts:
 
 **Step 1**: Publish the built-in theme switch scripts with the PHP processor:
 
@@ -167,7 +170,7 @@ class AppServiceProvider extends ServiceProvider
 
 Now hit the `d` key to toggle theme.
 
-## Extra - get the tests for the built-in scripts and PHP processors
+## Extra - get the unit tests for JS scripts and PHP processors
 
 ```bash
 php artisan vendor:publish --tag=theme-switch-2-states-js-tests
