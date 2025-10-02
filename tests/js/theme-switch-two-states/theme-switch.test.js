@@ -170,6 +170,7 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
     // Create and focus a contentEditable element
     const div = document.createElement("div");
     div.contentEditable = "true";
+    div.tabIndex = 0; // Make it focusable
     document.body.appendChild(div);
     div.focus();
 

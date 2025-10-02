@@ -3,7 +3,7 @@
     const activeElement = document.activeElement;
 
     const isInputFocused =
-      activeElement && (["INPUT", "TEXTAREA", "SELECT"].includes(activeElement.tagName) || activeElement.isContentEditable);
+      activeElement && (["INPUT", "TEXTAREA", "SELECT"].includes(activeElement.tagName) || activeElement.contentEditable === "true");
 
     if (!isInputFocused && event.key === "__TOGGLE_KEY__" && !event.ctrlKey && !event.altKey && !event.metaKey) {
       event.preventDefault();
