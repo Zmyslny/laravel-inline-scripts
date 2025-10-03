@@ -6,7 +6,7 @@ Allows ✨:
 - passing variables from PHP to JavaScript,
 - process / modify the script in a dedicated PHP class.
 
-Extra - build in **ready-to-use** scripts:
+Additionally - has build in **ready-to-use** scripts:
  - theme switching script (two states - light/dark)
  - _more coming later_
 
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-Use the Blade directive in your template to inline the scripts:
+Use the custom Blade directive in your template to inline the scripts:
 
 ```blade
 <html>
@@ -167,13 +167,13 @@ Now hit the `d` key to toggle between light and dark themes, and your choice wil
 
 Want to do more advanced processing of your JavaScript code before inlining it?
 
-Create a PHP class that implements one of the following interfaces:
-- `RenderableScript` - for scripts without placeholders
-- `ScriptWithPlaceholders` - for scripts with placeholders to be replaced with variables
+Create a PHP class:
+- that implements the `RenderableScript` interface - using it you can fetch / prepare / create JS code in any way you want;
+- and use it with `BladeInlineScripts::take(...)` method.
 
-And use them with `BladeInlineScripts::take(...)` method.
+Use interface `ScriptWithPlaceholders` for scripts with placeholders to be replaced with variables.
 
-This package provides base abstract implementations (in the context of getting JS code from files) for each of the interfaces:
+Want to load JS code from a file? Extend the abstract class `FromFile` or `FromFileWithPlaceholders`.
 
 ```php
 abstract class FromFile implements RenderableScript
