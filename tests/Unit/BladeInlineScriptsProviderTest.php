@@ -88,35 +88,6 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
         ->and($jsSwitchFile)->not->toBeNull();
 });
 
-test('boot method publishes theme-switch-two-states PHP stub classes', function (): void {
-    // Arrange
-    $app = new Application();
-    $provider = new BladeInlineScriptsProvider($app);
-
-    // Act
-    $provider->boot();
-
-    // Assert
-    $published = ServiceProvider::$publishes[BladeInlineScriptsProvider::class] ?? [];
-
-    $expectedClassPublishes = [];
-    foreach ($published as $source => $destination) {
-        if (str_contains($source, 'stubs/ThemeSwitchTwoStates')) {
-            $expectedClassPublishes[$source] = $destination;
-        }
-    }
-
-    expect($expectedClassPublishes)->not->toBeEmpty();
-
-    // Check specific PHP stub files are published
-    $sourceFiles = array_keys($expectedClassPublishes);
-    $themeInitClass = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeInitScript.php'));
-    $themeSwitchClass = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeSwitchScript.php'));
-
-    expect($themeInitClass)->not->toBeNull()
-        ->and($themeSwitchClass)->not->toBeNull();
-});
-
 test('boot method publishes theme-switch-two-states JS test files', function (): void {
     // Arrange
     $app = new Application();
@@ -146,35 +117,6 @@ test('boot method publishes theme-switch-two-states JS test files', function ():
         ->and($themeSwitchTest)->not->toBeNull();
 });
 
-test('boot method publishes theme-switch-two-states PHP test files', function (): void {
-    // Arrange
-    $app = new Application();
-    $provider = new BladeInlineScriptsProvider($app);
-
-    // Act
-    $provider->boot();
-
-    // Assert
-    $published = ServiceProvider::$publishes[BladeInlineScriptsProvider::class] ?? [];
-
-    $expectedPhpTestPublishes = [];
-    foreach ($published as $source => $destination) {
-        if (str_contains($source, 'tests/Unit/ThemeSwitchTwoStates')) {
-            $expectedPhpTestPublishes[$source] = $destination;
-        }
-    }
-
-    expect($expectedPhpTestPublishes)->not->toBeEmpty();
-
-    // Check specific PHP test files are published
-    $sourceFiles = array_keys($expectedPhpTestPublishes);
-    $themeInitTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeInitScriptTest.php'));
-    $themeSwitchTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'ThemeSwitchScriptTest.php'));
-
-    expect($themeInitTest)->not->toBeNull()
-        ->and($themeSwitchTest)->not->toBeNull();
-});
-
 test('boot method sets up correct publish groups', function (): void {
     // Arrange
     $app = new Application();
@@ -187,19 +129,15 @@ test('boot method sets up correct publish groups', function (): void {
     $groups = ServiceProvider::$publishGroups ?? [];
 
     expect($groups)->toHaveKey('theme-switch-2-states-js')
-        ->and($groups)->toHaveKey('theme-switch-2-states-php')
         ->and($groups)->toHaveKey('theme-switch-2-states-js-tests')
-        ->and($groups)->toHaveKey('theme-switch-2-states-php-tests')
         ->and($groups)->toHaveKey('theme-switch-2-states-all');
 
     // Verify 'theme-switch-2-states-all' includes all the files
     $allGroupFiles = $groups['theme-switch-2-states-all'] ?? [];
     $jsFiles = $groups['theme-switch-2-states-js'] ?? [];
-    $phpFiles = $groups['theme-switch-2-states-php'] ?? [];
     $jsTestFiles = $groups['theme-switch-2-states-js-tests'] ?? [];
-    $phpTestFiles = $groups['theme-switch-2-states-php-tests'] ?? [];
 
-    $expectedAllFiles = array_merge($jsFiles, $phpFiles, $jsTestFiles, $phpTestFiles);
+    $expectedAllFiles = array_merge($jsFiles, $jsTestFiles);
 
     expect(count($allGroupFiles))->toBe(count($expectedAllFiles));
 });
@@ -218,10 +156,10 @@ test('published files have correct destination paths', function (): void {
     foreach ($published as $source => $destination) {
         if (str_contains($source, 'resources/js')) {
             expect($destination)->toContain('resources/js/theme-switch-two-states');
-        } elseif (str_contains($source, 'stubs/ThemeSwitchTwoStates')) {
-            expect($destination)->toContain('app/Blade/ThemeSwitchTwoStates');
         } elseif (str_contains($source, 'tests/js')) {
             expect($destination)->toContain('tests/js/theme-switch-two-states');
+        } else {
+            expect(false)->toBeTrue(); // Fail the test if an unexpected file is found
         }
     }
 });
