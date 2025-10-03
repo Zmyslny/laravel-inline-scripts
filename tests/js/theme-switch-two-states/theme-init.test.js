@@ -73,12 +73,12 @@ describe("ThemeInitScript.js IIFE behavior", () => {
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
-  it("adds light class when localStorage.theme is light", () => {
+  it("adds no class when localStorage.theme is light", () => {
     localStorage.setItem("theme", DEFAULT_LIGHT);
 
     runThemeInitScript({ matchMediaMatches: false });
 
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
+    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
