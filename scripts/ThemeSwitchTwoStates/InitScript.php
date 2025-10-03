@@ -6,9 +6,9 @@ namespace Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates;
 
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
-class ThemeInitScript extends FromFileWithPlaceholders
+class InitScript extends FromFileWithPlaceholders
 {
-    protected string $fileName = 'theme-init';
+    protected string $fileName = 'init';
 
     protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 

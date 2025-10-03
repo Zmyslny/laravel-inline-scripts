@@ -8,13 +8,13 @@ use InvalidArgumentException;
 use Throwable;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
-class ThemeSwitchScript extends FromFileWithPlaceholders
+class SwitchScript extends FromFileWithPlaceholders
 {
     public const DEFAULT_KEY = 'd';
 
     public const KEY_PATTERN = '/^[a-z]$/';
 
-    protected string $fileName = 'theme-switch';
+    protected string $fileName = 'switch';
 
     protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 

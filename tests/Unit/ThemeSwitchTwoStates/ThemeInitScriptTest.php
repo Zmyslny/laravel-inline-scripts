@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeInitScript;
+use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\InitScript;
 use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum;
 
 uses(Tests\TestCase::class);
 
 it('points to a real file', function (): void {
     // Arrange
-    $script = new ThemeInitScript();
+    $script = new InitScript();
 
     // Act
     $isValid = $script->isFilePathValid();
@@ -20,7 +20,7 @@ it('points to a real file', function (): void {
 
 it('returns proper values from getPlaceholders()', function (): void {
     // Arrange
-    $script = new ThemeInitScript();
+    $script = new InitScript();
 
     // Act
     $placeholders = $script->getPlaceholders();

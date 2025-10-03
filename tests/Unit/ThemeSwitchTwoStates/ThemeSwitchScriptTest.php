@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeSwitchScript;
+use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\SwitchScript;
 use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum;
 
 uses(Tests\TestCase::class);
 
 it('points to a real file', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
 
     // Act
     $isValid = $script->isFilePathValid();
@@ -20,34 +20,34 @@ it('points to a real file', function (): void {
 
 it('throws an exception when the $key value being set is empty', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
 
     // Act & Assert
     expect(fn () => $script->setKey(''))
-        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
+        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', SwitchScript::KEY_PATTERN));
 });
 
 it('throws an exception when the $key value being set is longer than one letter', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
 
     // Act & Assert
     expect(fn () => $script->setKey('too'))
-        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
+        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', SwitchScript::KEY_PATTERN));
 });
 
 it('throws an exception when the $key is a single letter but does not match KEY_PATTERN', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
 
     // Act & Assert
     expect(fn () => $script->setKey('A'))
-        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', ThemeSwitchScript::KEY_PATTERN));
+        ->toThrow(InvalidArgumentException::class, sprintf('Key must be one letter from the %s pattern.', SwitchScript::KEY_PATTERN));
 });
 
 it('sets $key correctly for a valid value', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
 
     // Act
     $script->setKey('t');
@@ -58,7 +58,7 @@ it('sets $key correctly for a valid value', function (): void {
 
 it('sets $key correctly for a valid value through constructor', function (): void {
     // Arrange & Act
-    $script = new ThemeSwitchScript('t');
+    $script = new SwitchScript('t');
 
     // Assert
     expect($script->getKey())->toBe('t');
@@ -66,7 +66,7 @@ it('sets $key correctly for a valid value through constructor', function (): voi
 
 it('returns proper values from getPlaceholders()', function (): void {
     // Arrange
-    $script = new ThemeSwitchScript();
+    $script = new SwitchScript();
     $script->setKey('k');
 
     // Act
