@@ -73,7 +73,7 @@ This package makes it much more convenient by allowing you to keep inline script
 
 - **Complex script processing** using dedicated PHP classes _(see example below)_
 - **Variable passing** from PHP to JavaScript _(see example below)_
-- **Unit testing** your JavaScript code using tools like Vitest or Jest _(see extra section below)_
+- **Unit testing** your JavaScript code using tools like Vitest or Jest _(see bonus section below)_
 - **Better code organization** and maintainability
 - **IDE support** with syntax highlighting and error detection in dedicated JS files
 
@@ -81,17 +81,52 @@ This package makes it much more convenient by allowing you to keep inline script
 
 Modern websites often provide users with the ability to switch between light and dark themes. In such cases, you might want to remember the user's choice using `localStorage` and apply the selected theme on page load. To avoid **FOUC** (Flash of Unstyled Content), you can use _inline script_ to set the theme before the page fully loads.
 
-**Step 1**: Publish the built-in theme switch scripts:
+### Using prepared PHP classes
+
+Add the following to your `AppServiceProvider`:
+
+```php
+use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\InitScript;
+use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\SwitchScript;
+
+class AppServiceProvider extends ServiceProvider 
+{
+    public function boot(): void 
+    {
+        BladeInlineScripts::take(
+            new InitScript(),
+            new SwitchScript('d')
+        )->registerAs('themeSwitchScripts');
+    }
+}
+```
+
+and insert a newly created custom Blade directive in your template:
+
+```blade
+<html>
+<head>
+    ... 
+    @themeSwitchScripts
+</head>
+<body>
+    ...
+``` 
+
+Now hit the `d` key to toggle between light and dark themes, and your choice will be remembered on subsequent visits.
+
+### Using JS code directly
+
+**Step 1**: Publish the built-in scripts:
 
 ```bash
 php artisan vendor:publish --tag=theme-switch-2-states-js
 ```
+
 That will copy the scripts to `resources/js/theme-switch-two-states/[theme-init.js, theme-switch.js]`.
 
 `theme-init.js` - initializes the theme based on the user's previous choice stored in `localStorage`.  
 `theme-switch.js` - a function to toggle between light and dark themes by hitting a selected KEY and saves the choice in `localStorage`.
-
-They switch theme by adding/removing a CSS class to/from the `<html>` element.
 
 **Step 2**: Register the scripts in your `AppServiceProvider`:
 
@@ -103,7 +138,7 @@ class AppServiceProvider extends ServiceProvider
         BladeInlineScripts::takeFiles(
             [
                 resource_path('js/theme-switch-two-states/theme-init.js'),
-                ['__DARK__' => 'dark', '__LIGHT__' => 'light'], // variables to replace in the script
+                ['__DARK__' => 'dark'], // variables to replace in the script
             ],
             [
                 resource_path('js/theme-switch-two-states/theme-switch.js'),
@@ -114,7 +149,7 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-**Step 3**: Use the Blade directive in your template:
+**Step 3**: Insert a newly created custom Blade directive in your template:
 
 ```blade
 <html>
@@ -130,54 +165,29 @@ Now hit the `d` key to toggle between light and dark themes, and your choice wil
 
 ## Advanced Usage: Custom Script Processing
 
-You can create a custom PHP class to process or modify your JavaScript code before inlining it. For example, you might want to minify the script or add some dynamic content.
+Want to do more advanced processing of your JavaScript code before inlining it?
 
-Create a custom PHP processor class implementing the `RenderableScript` or `ScriptWithPlaceholders` interface and register it using the `BladeInlineScripts::take()` method.
+Create a PHP class that implements one of the following interfaces:
+- `RenderableScript` - for scripts without placeholders
+- `ScriptWithPlaceholders` - for scripts with placeholders to be replaced with variables
 
-I have prepared abstract base implementations for each of the interfaces:
+And use them with `BladeInlineScripts::take(...)` method.
+
+This package provides base abstract implementations (in the context of getting JS code from files) for each of the interfaces:
+
 ```php
 abstract class FromFile implements RenderableScript
 
 abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders
 ```
 
-To show them in action, I have created PHP processors extending the base classes for the theme switch scripts:
-
-**Step 1**: Publish the built-in theme switch scripts with the PHP processor:
-
-```bash
-php artisan vendor:publish --tag=theme-switch-2-states-php
-```
-
-That will copy the scripts to `resources/js/theme-switch-two-states/[theme-init.js, theme-switch.js]` and the processors classes to `app/Blade/ThemeSwitchTwoStates/[ThemeInitScript.php, ThemeSwitchScript]`.
-
-**Step 2**: Register the scripts in your `AppServiceProvider`:
-
-```php
-class AppServiceProvider extends ServiceProvider 
-{
-    public function boot(): void 
-    {
-        BladeInlineScripts::take(
-            new ThemeInitScript(),
-            new ThemeSwitchScript('d')        
-        )->registerAs('themeSwitchScripts');
-    }
-}
-```
-
-**Step 3**: Use the Blade directive in your template as previously shown.
-
-Now hit the `d` key to toggle theme.
-
-## Extra - get the unit tests for JS scripts and PHP processors
+## Bonus - Unit tests for JS scripts
 
 ```bash
 php artisan vendor:publish --tag=theme-switch-2-states-js-tests
-php artisan vendor:publish --tag=theme-switch-2-states-php-tests
 ```
 
-You can also publish all the assets mentioned at once:
+You can also publish JS code with test files at once:
 
 ```bash
 php artisan vendor:publish --tag=theme-switch-2-states-all
