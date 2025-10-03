@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blade\ThemeSwitchTwoStates;
 
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum;
+use ThemeSwitchTwoStates\ThemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class ThemeInitScript extends FromFileWithPlaceholders

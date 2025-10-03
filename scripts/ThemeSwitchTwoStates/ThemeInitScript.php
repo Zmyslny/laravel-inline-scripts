@@ -10,7 +10,7 @@ class ThemeInitScript extends FromFileWithPlaceholders
 {
     protected string $fileName = 'theme-init';
 
-    protected string $fileDirectory = __DIR__.'/../../../resources/js/theme-switch-two-states';
+    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 
     /**
      * @return array<string,string>

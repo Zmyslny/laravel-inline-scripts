@@ -16,7 +16,7 @@ class ThemeSwitchScript extends FromFileWithPlaceholders
 
     protected string $fileName = 'theme-switch';
 
-    protected string $fileDirectory = __DIR__.'/../../../resources/js/theme-switch-two-states';
+    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 
     protected string $key;
 

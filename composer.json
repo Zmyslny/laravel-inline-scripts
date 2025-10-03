@@ -18,7 +18,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Zmyslny\\LaravelInlineScripts\\": "src/"
+      "Zmyslny\\LaravelInlineScripts\\": "src/",
+      "Zmyslny\\LaravelInlineScripts\\Ready\\": "scripts/"
     }
   },
   "autoload-dev": {
