@@ -169,16 +169,16 @@ Want to do more advanced processing of your JavaScript code before inlining it?
 
 Create a PHP class:
 - that implements the `RenderableScript` interface - using it you can fetch / prepare / create JS code in any way you want;
-- and use it with `BladeInlineScripts::take(...)` method.
+- and place it in `BladeInlineScripts::take(...)` method.
 
 Use interface `ScriptWithPlaceholders` for scripts with placeholders to be replaced with variables.
 
 Want to load JS code from a file? Extend the abstract class `FromFile` or `FromFileWithPlaceholders`.
 
 ```php
-abstract class FromFile implements RenderableScript
+abstract class FromFile implements RenderableScript;
 
-abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders
+abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders;
 ```
 
 ## Bonus - Unit tests for JS scripts
