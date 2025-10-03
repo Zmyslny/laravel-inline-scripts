@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates;
 
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum; // Do not remove
 
 class InitScript extends FromFileWithPlaceholders
 {
