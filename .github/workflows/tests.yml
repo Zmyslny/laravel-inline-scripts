@@ -38,14 +38,17 @@ jobs:
         -   name: PHPStan
             run: composer test:stan
 
+        -   name: Rector tests
+            run: composer test:refa
+
         -   name: Test PHP formating
             run: composer test:format:php
 
         -   name: JavaScript tests
             run: composer test:js
 
-        -   name: Tests JS formating
-            run: composer test:format:js
-
         -   name: Tests JS linting
             run: composer test:lint
+
+        -   name: Tests JS formating
+            run: composer test:format:js
