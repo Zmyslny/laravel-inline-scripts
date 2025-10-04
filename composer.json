@@ -38,20 +38,17 @@
     "test:unit:co": "pest --parallel --coverage --min=100",
     "test:type-co": "pest --parallel --type-coverage --min=100",
     "test:js": "npm run test:js",
-    "format": [
-      "pint",
-      "npm run format"
-    ],
-    "test:format": [
-      "pint --test",
-      "npm run format:check"
-    ],
+    "format:js": "npm run format",
+    "format:php":  "pint",
+    "test:format:php": "pint --test",
+    "test:format:js": "npm run format:check",
     "test:stan": "phpstan",
     "test:refa": "rector --dry-run",
     "refa": "rector",
     "test": [
       "@test:type-co",
-      "@test:format",
+      "@test:format:php",
+      "@test:format:js",
       "@test:stan",
       "@test:refa",
       "@test:unit:co",

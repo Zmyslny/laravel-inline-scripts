@@ -20,11 +20,14 @@ jobs:
         -   name: Install dependencies
             run: composer install --prefer-dist --no-progress
 
-        -   name: Type coverage
-            run: composer test:type-co
-
         -   name: Unit tests with coverage
             run: composer test:unit:co
 
+        -   name: Type coverage
+            run: composer test:type-co
+
         -   name: PHPStan
             run: composer test:stan
+
+        -   name: Test PHP formating
+            run: composer test:format:php
