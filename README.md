@@ -1,3 +1,8 @@
+<p align="center">
+    <a href="https://github.com/Zmyslny/laravel-inline-scripts/actions"><img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Zmyslny/laravel-inline-scripts/tests.yml?branch=main&label=Tests%201.x"></a>
+</p>
+
+------
 # Laravel Inline Scripts
 
 A Laravel package that provides a simple way to wrap your JavaScript code stored in a file and inline it as custom Blade directive.  
