@@ -1,6 +1,6 @@
 {
   "name": "zmyslny/laravel-inline-scripts",
-  "description": "Converts your JavaScript code, stored in a file or files, into a custom blade directive and inline it in HTML.",
+  "description": "Converts your JavaScript code, stored in files, into a custom blade directive and inline it in HTML.",
   "license": "MIT",
   "type": "package",
   "require": {

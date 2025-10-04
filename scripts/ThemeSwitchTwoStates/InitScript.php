@@ -8,7 +8,7 @@ use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class InitScript extends FromFileWithPlaceholders
 {
-    protected string $fileName = 'init';
+    protected string $fileName = 'init-script';
 
     protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 

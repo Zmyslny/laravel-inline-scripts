@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Path to the raw JS template (with placeholders) used by PHP to generate a runtime script
-const scriptPath = path.resolve(process.cwd(), "resources/js/theme-switch-two-states/switch.js");
+const scriptPath = path.resolve(process.cwd(), "resources/js/theme-switch-two-states/switch-script.js");
 
 const DEFAULT_TOGGLE_KEY = "d";
 const DEFAULT_DARK = "dark";

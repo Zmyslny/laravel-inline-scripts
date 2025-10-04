@@ -14,7 +14,7 @@ class SwitchScript extends FromFileWithPlaceholders
 
     public const KEY_PATTERN = '/^[a-z]$/';
 
-    protected string $fileName = 'switch';
+    protected string $fileName = 'switch-script';
 
     protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
 
