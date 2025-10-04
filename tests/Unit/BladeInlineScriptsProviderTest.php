@@ -86,7 +86,7 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
 
     expect($jsInitFile)->not->toBeNull()
         ->and($jsSwitchFile)->not->toBeNull();
-    
+
     // Verify that the source files actually exist physically
     expect(file_exists((string) $jsInitFile))->toBeTrue('init-script.js source file must exist')
         ->and(file_exists((string) $jsSwitchFile))->toBeTrue('switch-script.js source file must exist');
@@ -114,11 +114,15 @@ test('boot method publishes theme-switch-two-states JS test files', function ():
 
     // Check specific test files are published
     $sourceFiles = array_keys($expectedTestPublishes);
-    $themeInitTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'theme-init.test.js'));
-    $themeSwitchTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'theme-switch.test.js'));
+    $initScriptTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'init-script.test.js'));
+    $switchScriptTest = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'switch-script.test.js'));
 
-    expect($themeInitTest)->not->toBeNull()
-        ->and($themeSwitchTest)->not->toBeNull();
+    expect($initScriptTest)->not->toBeNull()
+        ->and($switchScriptTest)->not->toBeNull();
+    
+    // Verify that the source test files actually exist physically
+    expect(file_exists((string) $initScriptTest))->toBeTrue('init-script.test.js source file must exist')
+        ->and(file_exists((string) $switchScriptTest))->toBeTrue('switch-script.test.js source file must exist');
 });
 
 test('boot method sets up correct publish groups', function (): void {

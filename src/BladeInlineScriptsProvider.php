@@ -24,8 +24,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
         ], ['theme-switch-2-states-js', 'theme-switch-2-states-all']);
 
         $this->publishes([
-            __DIR__.'/../tests/js/theme-switch-two-states/theme-init.test.js' => base_path('tests/js/theme-switch-two-states/theme-init.test.js'),
-            __DIR__.'/../tests/js/theme-switch-two-states/theme-switch.test.js' => base_path('tests/js/theme-switch-two-states/theme-switch.test.js'),
+            __DIR__.'/../tests/js/theme-switch-two-states/init-script.test.js' => base_path('tests/js/theme-switch-two-states/init-script.test.js'),
+            __DIR__.'/../tests/js/theme-switch-two-states/switch-script.test.js' => base_path('tests/js/theme-switch-two-states/switch-script.test.js'),
         ], ['theme-switch-2-states-js-tests', 'theme-switch-2-states-all']);
     }
 }
