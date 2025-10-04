@@ -25,3 +25,6 @@ jobs:
 
         -   name: Unit tests with coverage
             run: composer test:unit:co
+
+        -   name: PHPStan
+            run: composer test:stan
