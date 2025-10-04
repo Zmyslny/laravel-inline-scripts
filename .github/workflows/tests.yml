@@ -20,5 +20,8 @@ jobs:
         -   name: Install dependencies
             run: composer install --prefer-dist --no-progress
 
-        -   name: Unit Tests
+        -   name: Type coverage
+            run: composer test:type-co
+
+        -   name: Unit tests with coverage
             run: composer test:unit:co
