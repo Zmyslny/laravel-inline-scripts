@@ -128,10 +128,10 @@ Now hit the `d` key to toggle between light and dark themes, and your choice wil
 php artisan vendor:publish --tag=theme-switch-2-states-js
 ```
 
-That will copy the scripts to `resources/js/theme-switch-two-states/[theme-init.js, theme-switch.js]`.
+That will copy the scripts to `resources/js/theme-switch-two-states/[init-script.js, switch-script.js]`.
 
-`theme-init.js` - initializes the theme based on the user's previous choice stored in `localStorage`.  
-`theme-switch.js` - a function to toggle between light and dark themes by hitting a selected KEY and saves the choice in `localStorage`.
+`init-script.js` - initializes the theme based on the user's previous choice stored in `localStorage`.  
+`switch-script.js` - a function to toggle between light and dark themes by hitting a selected KEY and saves the choice in `localStorage`.
 
 **Step 2**: Register the scripts in your `AppServiceProvider`:
 
@@ -142,11 +142,11 @@ class AppServiceProvider extends ServiceProvider
     {
         BladeInlineScripts::takeFiles(
             [
-                resource_path('js/theme-switch-two-states/theme-init.js'),
+                resource_path('js/theme-switch-two-states/init-script.js'),
                 ['__DARK__' => 'dark'], // variables to replace in the script
             ],
             [
-                resource_path('js/theme-switch-two-states/theme-switch.js'),
+                resource_path('js/theme-switch-two-states/switch-script.js'),
                 ['__DARK__' => 'dark', '__LIGHT__' => 'light', '__TOGGLE_KEY__' => 'd'], // variables to replace in the script
             ]
         )->registerAs('themeSwitchScripts');
