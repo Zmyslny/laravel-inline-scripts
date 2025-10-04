@@ -119,7 +119,7 @@ test('boot method publishes theme-switch-two-states JS test files', function ():
 
     expect($initScriptTest)->not->toBeNull()
         ->and($switchScriptTest)->not->toBeNull();
-    
+
     // Verify that the source test files actually exist physically
     expect(file_exists((string) $initScriptTest))->toBeTrue('init-script.test.js source file must exist')
         ->and(file_exists((string) $switchScriptTest))->toBeTrue('switch-script.test.js source file must exist');
