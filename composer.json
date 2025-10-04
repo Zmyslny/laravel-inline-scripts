@@ -28,12 +28,8 @@
     }
   },
   "scripts": {
-    "lint": [
-      "npm run lint"
-    ],
-    "test:lint": [
-      "npm run lint:check"
-    ],
+    "lint": "npm run lint",
+    "test:lint": "npm run lint:check",
     "test:unit": "pest --parallel",
     "test:unit:co": "pest --parallel --coverage --min=100",
     "test:type-co": "pest --parallel --type-coverage --min=100",
