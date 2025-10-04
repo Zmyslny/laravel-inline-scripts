@@ -19,8 +19,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/js/theme-switch-two-states/theme-init.js' => resource_path('js/theme-switch-two-states/theme-init.js'),
-            __DIR__.'/../resources/js/theme-switch-two-states/theme-switch.js' => resource_path('js/theme-switch-two-states/theme-switch.js'),
+            __DIR__.'/../resources/js/theme-switch-two-states/init-script.js' => resource_path('js/theme-switch-two-states/init-script.js'),
+            __DIR__.'/../resources/js/theme-switch-two-states/switch-script.js' => resource_path('js/theme-switch-two-states/switch-script.js'),
         ], ['theme-switch-2-states-js', 'theme-switch-2-states-all']);
 
         $this->publishes([

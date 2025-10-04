@@ -79,13 +79,17 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
 
     expect($expectedJsPublishes)->not->toBeEmpty();
 
-    // Check specific JS files are published
+    // Check that the specific physical JS files are published and exist
     $sourceFiles = array_keys($expectedJsPublishes);
-    $jsInitFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'theme-init.js'));
-    $jsSwitchFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'theme-switch.js'));
+    $jsInitFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'init-script.js'));
+    $jsSwitchFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'switch-script.js'));
 
     expect($jsInitFile)->not->toBeNull()
         ->and($jsSwitchFile)->not->toBeNull();
+    
+    // Verify that the source files actually exist physically
+    expect(file_exists((string) $jsInitFile))->toBeTrue('init-script.js source file must exist')
+        ->and(file_exists((string) $jsSwitchFile))->toBeTrue('switch-script.js source file must exist');
 });
 
 test('boot method publishes theme-switch-two-states JS test files', function (): void {
