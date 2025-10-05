@@ -1,4 +1,12 @@
 (function __FUNCTION_NAME__() {
+  window.inlineScripts = window.inlineScripts || {};
+
+  window.inlineScripts.toggleColorScheme = function() {
+    const isDark = document.documentElement.classList.toggle("__DARK__");
+
+    localStorage.theme = isDark ? "__DARK__" : "__LIGHT__";
+  };
+
   document.addEventListener("keydown", (event) => {
     const activeElement = document.activeElement;
 
@@ -8,9 +16,7 @@
     if (!isInputFocused && event.key === "__TOGGLE_KEY__" && !event.ctrlKey && !event.altKey && !event.metaKey) {
       event.preventDefault();
 
-      const isDark = document.documentElement.classList.toggle("__DARK__");
-
-      localStorage.theme = isDark ? "__DARK__" : "__LIGHT__";
+      window.inlineScripts.toggleColorScheme();
     }
   });
 })();
