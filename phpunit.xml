@@ -15,6 +15,7 @@
     <source>
         <include>
             <directory>src</directory>
+            <directory>scripts</directory>
         </include>
     </source>
     <php>
