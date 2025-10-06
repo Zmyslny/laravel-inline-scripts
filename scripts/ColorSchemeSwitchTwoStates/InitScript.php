@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates;
+namespace Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates;
 
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 

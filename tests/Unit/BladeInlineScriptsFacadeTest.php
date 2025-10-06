@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Zmyslny\LaravelInlineScripts\BladeInlineScriptsCore;
 use Zmyslny\LaravelInlineScripts\BladeInlineScriptsFacade;
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\InitScript;
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\SwitchScript;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\InitScript;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SwitchScript;
 
 uses(Tests\TestCase::class);
 

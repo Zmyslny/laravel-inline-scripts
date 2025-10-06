@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\SwitchScript;
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\ThemeTypeEnum;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SwitchScript;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\ThemeTypeEnum;
 
 uses(Tests\TestCase::class);
 

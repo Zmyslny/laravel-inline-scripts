@@ -91,8 +91,8 @@ Modern websites often provide users with the ability to switch between light and
 Add the following to your `AppServiceProvider`:
 
 ```php
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\InitScript;
-use Zmyslny\LaravelInlineScripts\Ready\ThemeSwitchTwoStates\SwitchScript;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\InitScript;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SwitchScript;
 
 class AppServiceProvider extends ServiceProvider 
 {
