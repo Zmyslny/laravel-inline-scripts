@@ -10,7 +10,7 @@ class InitScript extends FromFileWithPlaceholders
 {
     protected string $fileName = 'init-script';
 
-    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
+    protected string $fileDirectory = __DIR__.'/js';
 
     /**
      * @return array<string,string>
@@ -18,8 +18,8 @@ class InitScript extends FromFileWithPlaceholders
     public function getPlaceholders(): array
     {
         return [
-            '__DARK__' => ThemeTypeEnum::DARK->value,
-            '__LIGHT__' => ThemeTypeEnum::LIGHT->value,
+            '__DARK__' => SchemeTypeEnum::DARK->value,
+            '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
         ];
     }
 }

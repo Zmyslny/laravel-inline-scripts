@@ -16,7 +16,7 @@ class SwitchScript extends FromFileWithPlaceholders
 
     protected string $fileName = 'switch-script';
 
-    protected string $fileDirectory = __DIR__.'/../../resources/js/theme-switch-two-states';
+    protected string $fileDirectory = __DIR__.'/js';
 
     protected string $key;
 
@@ -49,8 +49,8 @@ class SwitchScript extends FromFileWithPlaceholders
     {
         return [
             '__TOGGLE_KEY__' => $this->key,
-            '__DARK__' => ThemeTypeEnum::DARK->value,
-            '__LIGHT__' => ThemeTypeEnum::LIGHT->value,
+            '__DARK__' => SchemeTypeEnum::DARK->value,
+            '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
         ];
     }
 

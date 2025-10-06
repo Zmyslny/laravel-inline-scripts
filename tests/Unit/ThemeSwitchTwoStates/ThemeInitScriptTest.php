@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\InitScript;
-use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\ThemeTypeEnum;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SchemeTypeEnum;
 
 uses(Tests\TestCase::class);
 
@@ -27,7 +27,7 @@ it('returns proper values from getPlaceholders()', function (): void {
 
     // Assert
     expect($placeholders)->toBe([
-        '__DARK__' => ThemeTypeEnum::DARK->value,
-        '__LIGHT__' => ThemeTypeEnum::LIGHT->value,
+        '__DARK__' => SchemeTypeEnum::DARK->value,
+        '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
     ]);
 });

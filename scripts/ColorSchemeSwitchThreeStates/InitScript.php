@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchThreeStates;
 
-use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\ThemeTypeEnum;
+use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SchemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class InitScript extends FromFileWithPlaceholders
@@ -19,8 +19,8 @@ class InitScript extends FromFileWithPlaceholders
     public function getPlaceholders(): array
     {
         return [
-            '__DARK__' => ThemeTypeEnum::DARK->value,
-            '__LIGHT__' => ThemeTypeEnum::LIGHT->value,
+            '__DARK__' => SchemeTypeEnum::DARK->value,
+            '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
         ];
     }
 }
