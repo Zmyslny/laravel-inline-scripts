@@ -59,7 +59,7 @@ test('register method binds BladeDirectiveRegistrarInterface to BladeDirectiveRe
         ->and($instance1)->toBe($instance2);
 });
 
-test('boot method publishes theme-switch-two-states JS files', function (): void {
+test('boot method publishes color-scheme-switch-two-states JS files', function (): void {
     // Arrange
     $app = new Application();
     $provider = new BladeInlineScriptsProvider($app);
@@ -72,7 +72,7 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
 
     $expectedJsPublishes = [];
     foreach ($published as $source => $destination) {
-        if (str_contains($source, 'resources/js/theme-switch-two-states')) {
+        if (str_contains($source, '/scripts/ColorSchemeSwitchTwoStates/js')) {
             $expectedJsPublishes[$source] = $destination;
         }
     }
@@ -81,6 +81,7 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
 
     // Check that the specific physical JS files are published and exist
     $sourceFiles = array_keys($expectedJsPublishes);
+
     $jsInitFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'init-script.js'));
     $jsSwitchFile = collect($sourceFiles)->first(fn ($file) => str_contains($file, 'switch-script.js'));
 
@@ -92,7 +93,7 @@ test('boot method publishes theme-switch-two-states JS files', function (): void
         ->and(file_exists((string) $jsSwitchFile))->toBeTrue('switch-script.js source file must exist');
 });
 
-test('boot method publishes theme-switch-two-states JS test files', function (): void {
+test('boot method publishes color-scheme-switch-two-states JS test files', function (): void {
     // Arrange
     $app = new Application();
     $provider = new BladeInlineScriptsProvider($app);

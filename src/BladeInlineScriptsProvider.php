@@ -19,8 +19,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/js/color-scheme-switch-two-states/init-script.js' => resource_path('scripts/ColorSchemeSwitchTwoStates/js/init-script.js'),
-            __DIR__.'/../resources/js/color-scheme-switch-two-states/switch-script.js' => resource_path('scripts/ColorSchemeSwitchTwoStates/js/switch-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchTwoStates/js/init-script.js' => resource_path('js/color-scheme-switch-two-states/init-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchTwoStates/js/switch-script.js' => resource_path('js/color-scheme-switch-two-states/switch-script.js'),
         ], ['color-scheme-switch-2-states-js', 'color-scheme-switch-2-states-all']);
 
         $this->publishes([
@@ -29,8 +29,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
         ], ['color-scheme-switch-2-states-js-tests', 'color-scheme-switch-2-states-all']);
 
         $this->publishes([
-            __DIR__.'/../resources/js/color-scheme-switch-three-states/init-script.js' => resource_path('scripts/ColorSchemeSwitchThreeStates/js/init-script.js'),
-            __DIR__.'/../resources/js/color-scheme-switch-three-states/switch-script.js' => resource_path('scripts/ColorSchemeSwitchThreeStates/js/switch-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/init-script.js' => base_path('js/color-scheme-switch-three-states/init-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/switch-script.js' => base_path('js/color-scheme-switch-three-states/switch-script.js'),
         ], ['color-scheme-switch-3-states-js', 'color-scheme-switch-3-states-all']);
     }
 }
