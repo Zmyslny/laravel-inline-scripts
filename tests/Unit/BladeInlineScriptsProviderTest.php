@@ -106,7 +106,7 @@ test('boot method publishes color-scheme-switch-two-states JS test files', funct
 
     $expectedTestPublishes = [];
     foreach ($published as $source => $destination) {
-        if (str_contains($source, 'tests/js/theme-switch-two-states')) {
+        if (str_contains($source, 'tests/js/color-scheme-switch-two-states')) {
             $expectedTestPublishes[$source] = $destination;
         }
     }
