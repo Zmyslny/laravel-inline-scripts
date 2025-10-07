@@ -3,6 +3,7 @@
 @endphp
 
 <button
+    {{-- .switchColorScheme() is defined in switch-script.js --}}
     onclick="window.inlineScripts.switchColorScheme()"
     title="Color scheme switcher"
 >
