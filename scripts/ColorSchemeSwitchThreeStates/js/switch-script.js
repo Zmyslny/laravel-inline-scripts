@@ -1,19 +1,26 @@
 (function __FUNCTION_NAME__() {
   window.inlineScripts = window.inlineScripts || {};
 
+  const setColorScheme = (scheme) => {
+    document.documentElement.classList.toggle(
+      "__DARK__",
+      scheme === "__DARK__",
+    );
+    document.documentElement.classList.toggle(
+      "__LIGHT__",
+      scheme === "__LIGHT__",
+    );
+  };
+
   window.inlineScripts.switchColorScheme = function () {
     if (document.documentElement.classList.contains("__DARK__")) {
-      document.documentElement.classList.remove("__DARK__");
-      document.documentElement.classList.add("__LIGHT__");
-
+      setColorScheme("__LIGHT__");
       localStorage.colorScheme = "__LIGHT__";
     } else if (document.documentElement.classList.contains("__LIGHT__")) {
-      document.documentElement.classList.remove("__LIGHT__");
-
+      setColorScheme(null);
       localStorage.removeItem("colorScheme");
     } else {
-      document.documentElement.classList.add("__DARK__");
-
+      setColorScheme("__DARK__");
       localStorage.colorScheme = "__DARK__";
     }
   };
