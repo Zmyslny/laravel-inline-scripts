@@ -3,7 +3,7 @@
 @endphp
 
 <button
-    @click="window.inlineScripts.switchColorScheme()"
+    onclick="window.inlineScripts.switchColorScheme()"
     title="Color scheme switcher"
 >
 
