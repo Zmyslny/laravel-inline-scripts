@@ -8,7 +8,7 @@
     );
   };
 
-  window.inlineScripts.toggleColorScheme = function () {
+  window.inlineScripts.switchColorScheme = function () {
     const isDark = document.documentElement.classList.contains("__DARK__");
 
     if (isDark) {
@@ -37,7 +37,7 @@
     ) {
       event.preventDefault();
 
-      window.inlineScripts.toggleColorScheme();
+      window.inlineScripts.switchColorScheme();
     }
   });
 })();

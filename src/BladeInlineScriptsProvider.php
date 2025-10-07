@@ -34,6 +34,10 @@ class BladeInlineScriptsProvider extends ServiceProvider
             __DIR__.'/../tests/js/color-scheme-switch-two-states/init-script.test.js' => base_path('tests/js/color-scheme-switch-two-states/init-script.test.js'),
             __DIR__.'/../tests/js/color-scheme-switch-two-states/switch-script.test.js' => base_path('tests/js/color-scheme-switch-two-states/switch-script.test.js'),
         ], ['color-scheme-switch-2-states-js-tests', 'color-scheme-switch-2-states-all']);
+
+        $this->publishes([
+            __DIR__.'/../scripts/ColorSchemeSwitchTwoStates/view/hero-icons-tailwind.blade.php' => resource_path('views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php'),
+        ], ['color-scheme-switch-2-states-views', 'color-scheme-switch-2-states-all']);
     }
 
     public function publishColorScheme3States(): void
@@ -49,7 +53,7 @@ class BladeInlineScriptsProvider extends ServiceProvider
         ], ['color-scheme-switch-3-states-js-tests', 'color-scheme-switch-3-states-all']);
 
         $this->publishes([
-            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/view/hero-icons-tailwind-livewire.blade.php' => resource_path('views/color-scheme-switch-three-states/hero-icons-tailwind-livewire.blade.php'),
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/view/hero-icons-tailwind.blade.php' => resource_path('views/color-scheme-switch-three-states/hero-icons-tailwind.blade.php'),
         ], ['color-scheme-switch-3-states-views', 'color-scheme-switch-3-states-all']);
     }
 }
