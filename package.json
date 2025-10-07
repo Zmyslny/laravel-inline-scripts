@@ -2,8 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "format": "prettier --write resources/ tests/js/",
-        "format:check": "prettier --check resources/ tests/js/",
+        "format": "prettier --write scripts/*/js/ tests/js/",
+        "format:check": "prettier --check scripts/*/js/ tests/js/",
         "lint": "eslint . --fix",
         "lint:check": "eslint .",
         "test:js": "vitest run"

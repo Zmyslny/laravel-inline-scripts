@@ -20,7 +20,7 @@ export default [
   // Apply recommended JS rules to JS files only
   {
     files: [
-      'resources/**/*.js',
+      'scripts/**/*.js',
       '*.js',
       '*.mjs',
     ],

@@ -3,16 +3,17 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Path to the raw JS template (with placeholders) used by PHP to generate a runtime script
-const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchTwoStates/js/init-script.js");
+const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchThreeStates/js/init-script.js");
 
 const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 
-function runColorSchemeInitScript({
+function runThemeInitScript({
   dark = DEFAULT_DARK,
   light = DEFAULT_LIGHT,
   functionName = "themeTypeInit",
-  matchMediaMatches = false,
+  matchMediaDarkMatches = false,
+  matchMediaLightMatches = false,
 } = {}) {
   // Load the template and substitute placeholders like PHP does
   let src = fs.readFileSync(scriptPath, "utf8");
@@ -20,7 +21,9 @@ function runColorSchemeInitScript({
 
   // Mock matchMedia if not present
   const mm = vi.fn().mockImplementation((query) => ({
-    matches: matchMediaMatches && query.includes(`(prefers-color-scheme: ${dark})`),
+    matches:
+      (matchMediaDarkMatches && query.includes(`(prefers-color-scheme: ${dark})`)) ||
+      (matchMediaLightMatches && query.includes(`(prefers-color-scheme: ${light})`)),
     media: query,
     onchange: null,
     addListener: vi.fn(),
@@ -44,7 +47,7 @@ function runColorSchemeInitScript({
 }
 
 // IIFE = Immediately Invoked Function Expression
-describe("ColorSchemeInitScript.js IIFE behavior", () => {
+describe("ThemeInitScript.js IIFE behavior (three states)", () => {
   beforeEach(() => {
     // Reset DOM classes and storage before each test
     document.documentElement.className = "";
@@ -67,32 +70,40 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
   it("adds dark class when localStorage.colorScheme is dark", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
-  it("adds no class when localStorage.colorScheme is light", () => {
+  it("adds light class when localStorage.colorScheme is light", () => {
     localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
+    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
   it("adds dark class when no localStorage.colorScheme and prefers-color-scheme: dark", () => {
     // No localStorage.colorScheme
-    runColorSchemeInitScript({ matchMediaMatches: true });
+    runThemeInitScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
-  it("adds no class when no localStorage.colorScheme and no dark preference", () => {
+  it("adds light class when no localStorage.colorScheme and prefers-color-scheme: light", () => {
+    // No localStorage.colorScheme
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
+
+    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
+  });
+
+  it("adds no class when no localStorage.colorScheme and no preference", () => {
     // No localStorage.colorScheme and matchMedia false
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
@@ -102,11 +113,33 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
     expect(() => {
-      runColorSchemeInitScript({ matchMediaMatches: false });
-      runColorSchemeInitScript({ matchMediaMatches: false });
+      runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+      runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
     }).not.toThrow();
 
     // classList does not duplicate tokens; just ensure it is present
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
+  });
+
+  it("removes light class when switching to dark", () => {
+    // First set light
+    document.documentElement.classList.add(DEFAULT_LIGHT);
+    localStorage.setItem("colorScheme", DEFAULT_DARK);
+
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
+    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
+  });
+
+  it("removes dark class when switching to light", () => {
+    // First set dark
+    document.documentElement.classList.add(DEFAULT_DARK);
+    localStorage.setItem("colorScheme", DEFAULT_LIGHT);
+
+    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+
+    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
+    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 });

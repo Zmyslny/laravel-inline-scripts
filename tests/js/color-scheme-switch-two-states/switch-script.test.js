@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Path to the raw JS template (with placeholders) used by PHP to generate a runtime script
-const scriptPath = path.resolve(process.cwd(), "resources/js/theme-switch-two-states/switch-script.js");
+const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchTwoStates/js/switch-script.js");
 
 const DEFAULT_TOGGLE_KEY = "d";
 const DEFAULT_DARK = "dark";
@@ -62,18 +62,18 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
 
   it("toggles dark class and updates localStorage on default key press", () => {
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-    expect(localStorage.getItem("theme")).toBe(null);
+    expect(localStorage.getItem("colorScheme")).toBe(null);
 
     runThemeSwitchScript();
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(localStorage.getItem("theme")).toBe(DEFAULT_DARK);
+    expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
 
     // press again to toggle off
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-    expect(localStorage.getItem("theme")).toBe(DEFAULT_LIGHT);
+    expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_LIGHT);
   });
 
   it("does nothing when modifier keys are pressed", () => {
@@ -97,7 +97,7 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
     // correct custom key - toggles
     dispatchKeydown("t");
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(localStorage.getItem("theme")).toBe(DEFAULT_DARK);
+    expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
   });
 
   it("does not toggle when an input field is focused", () => {
@@ -114,7 +114,7 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
     // Try to toggle while input is focused - should not work
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-    expect(localStorage.getItem("theme")).toBe(null);
+    expect(localStorage.getItem("colorScheme")).toBe(null);
 
     // Clean up
     document.body.removeChild(input);
@@ -199,7 +199,7 @@ describe("ThemeSwitchScript.js IIFE behavior", () => {
     // Toggle should work normally when input exists but is not focused
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(localStorage.getItem("theme")).toBe(DEFAULT_DARK);
+    expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
 
     // Clean up
     document.body.removeChild(input);
