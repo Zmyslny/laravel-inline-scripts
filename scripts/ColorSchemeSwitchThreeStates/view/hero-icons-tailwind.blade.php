@@ -9,7 +9,7 @@
 >
 
     <span class="dark:hidden light:hidden">
-       {{-- hero.outline.computer-desktop --}}
+       {{-- https://heroicons.com: hero.outline.computer-desktop --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="currentColor"
@@ -19,7 +19,7 @@
     </span>
 
     <span class="light:inline hidden">
-        {{-- hero.outline.sun --}}
+        {{-- https://heroicons.com: hero.outline.sun --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="currentColor"
@@ -29,7 +29,7 @@
     </span>
 
     <span class="dark:inline hidden">
-
+        {{-- https://heroicons.com: hero.outline.moon --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="currentColor"

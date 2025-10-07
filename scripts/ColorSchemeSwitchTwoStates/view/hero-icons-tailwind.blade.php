@@ -9,7 +9,7 @@
 >
 
     <span class="dark:hidden">
-        {{-- hero.outline.sun --}}
+        {{-- https://heroicons.com: hero.outline.sun --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="currentColor"
@@ -19,7 +19,7 @@
     </span>
 
     <span class="dark:inline hidden">
-        {{-- hero.outline.moon --}}
+        {{-- https://heroicons.com: hero.outline.moon --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
              fill="currentColor"
