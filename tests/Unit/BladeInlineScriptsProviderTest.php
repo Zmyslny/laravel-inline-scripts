@@ -137,14 +137,14 @@ test('boot method sets up correct publish groups', function (): void {
     // Assert
     $groups = ServiceProvider::$publishGroups ?? [];
 
-    expect($groups)->toHaveKey('theme-switch-2-states-js')
-        ->and($groups)->toHaveKey('theme-switch-2-states-js-tests')
-        ->and($groups)->toHaveKey('theme-switch-2-states-all');
+    expect($groups)->toHaveKey('color-scheme-switch-2-states-js')
+        ->and($groups)->toHaveKey('color-scheme-switch-2-states-js-tests')
+        ->and($groups)->toHaveKey('color-scheme-switch-2-states-all');
 
     // Verify 'theme-switch-2-states-all' includes all the files
-    $allGroupFiles = $groups['theme-switch-2-states-all'] ?? [];
-    $jsFiles = $groups['theme-switch-2-states-js'] ?? [];
-    $jsTestFiles = $groups['theme-switch-2-states-js-tests'] ?? [];
+    $allGroupFiles = $groups['color-scheme-switch-2-states-all'] ?? [];
+    $jsFiles = $groups['color-scheme-switch-2-states-js'] ?? [];
+    $jsTestFiles = $groups['color-scheme-switch-2-states-js-tests'] ?? [];
 
     $expectedAllFiles = array_merge($jsFiles, $jsTestFiles);
 
@@ -163,10 +163,12 @@ test('published files have correct destination paths', function (): void {
     $published = ServiceProvider::$publishes[BladeInlineScriptsProvider::class] ?? [];
 
     foreach ($published as $source => $destination) {
-        if (str_contains($source, 'resources/js')) {
-            expect($destination)->toContain('resources/js/theme-switch-two-states');
+        if (str_contains($source, 'scripts/ColorSchemeSwitchTwoStates/js')) {
+            expect($destination)->toContain('resources/js/color-scheme-switch-two-states');
+        } elseif (str_contains($source, 'scripts/ColorSchemeSwitchThreeStates/js')) {
+            expect($destination)->toContain('js/color-scheme-switch-three-states');
         } elseif (str_contains($source, 'tests/js')) {
-            expect($destination)->toContain('tests/js/theme-switch-two-states');
+            expect($destination)->toContain('tests/js/color-scheme-switch-two-states');
         } else {
             expect(false)->toBeTrue(); // Fail the test if an unexpected file is found
         }
