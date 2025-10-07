@@ -13,15 +13,26 @@
   };
 
   window.inlineScripts.switchColorScheme = function () {
-    if (document.documentElement.classList.contains("__DARK__")) {
+    if (document.documentElement.classList.contains("__DARK__") && localStorage.colorScheme === "__DARK__") {
+
       setColorScheme("__LIGHT__");
       localStorage.colorScheme = "__LIGHT__";
-    } else if (document.documentElement.classList.contains("__LIGHT__")) {
-      setColorScheme(null);
-      localStorage.removeItem("colorScheme");
+
+    } else if (document.documentElement.classList.contains("__LIGHT__") && localStorage.colorScheme === "__LIGHT__") {
+
+      // System preference
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setColorScheme("__DARK__");
+      } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        setColorScheme("__LIGHT__");
+      }
+      localStorage.colorScheme = "system";
+
     } else {
+
       setColorScheme("__DARK__");
       localStorage.colorScheme = "__DARK__";
+
     }
   };
 
