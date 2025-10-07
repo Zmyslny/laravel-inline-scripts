@@ -1,6 +1,9 @@
 (function __FUNCTION_NAME__() {
   const setColorScheme = (scheme) => {
-    document.documentElement.classList.toggle("__DARK__", scheme === "__DARK__");
+    document.documentElement.classList.toggle(
+      "__DARK__",
+      scheme === "__DARK__",
+    );
   };
 
   if (localStorage.colorScheme === "__DARK__") {

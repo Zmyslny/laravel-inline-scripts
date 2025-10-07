@@ -2,7 +2,10 @@
   window.inlineScripts = window.inlineScripts || {};
 
   const setColorScheme = (scheme) => {
-    document.documentElement.classList.toggle("__DARK__", scheme === "__DARK__");
+    document.documentElement.classList.toggle(
+      "__DARK__",
+      scheme === "__DARK__",
+    );
   };
 
   window.inlineScripts.toggleColorScheme = function () {
