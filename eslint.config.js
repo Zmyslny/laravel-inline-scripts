@@ -34,6 +34,9 @@ export default [
       },
     },
     ...js.configs.recommended,
+    rules: {
+      'max-len': ['warn', { code: 140 }],
+    },
   },
 
   // Tests (Vitest + jsdom)
