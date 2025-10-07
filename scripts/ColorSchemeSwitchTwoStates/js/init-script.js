@@ -1,9 +1,13 @@
 (function __FUNCTION_NAME__() {
+  const setColorScheme = (scheme) => {
+    document.documentElement.classList.toggle("__DARK__", scheme === "__DARK__");
+  };
+
   if (localStorage.colorScheme === "__DARK__") {
-    document.documentElement.classList.add("__DARK__");
+    setColorScheme("__DARK__");
   } else if (localStorage.colorScheme === "__LIGHT__") {
-    // do nothing
+    setColorScheme("__LIGHT__");
   } else if (window.matchMedia("(prefers-color-scheme: __DARK__)").matches) {
-    document.documentElement.classList.add("__DARK__");
+    setColorScheme("__DARK__");
   }
 })();

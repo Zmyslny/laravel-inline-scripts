@@ -1,10 +1,20 @@
 (function __FUNCTION_NAME__() {
   window.inlineScripts = window.inlineScripts || {};
 
-  window.inlineScripts.toggleColorScheme = function () {
-    const isDark = document.documentElement.classList.toggle("__DARK__");
+  const setColorScheme = (scheme) => {
+    document.documentElement.classList.toggle("__DARK__", scheme === "__DARK__");
+  };
 
-    localStorage.colorScheme = isDark ? "__DARK__" : "__LIGHT__";
+  window.inlineScripts.toggleColorScheme = function () {
+    const isDark = document.documentElement.classList.contains("__DARK__");
+
+    if (isDark) {
+      setColorScheme("__LIGHT__");
+      localStorage.colorScheme = "__LIGHT__";
+    } else {
+      setColorScheme("__DARK__");
+      localStorage.colorScheme = "__DARK__";
+    }
   };
 
   document.addEventListener("keydown", (event) => {
