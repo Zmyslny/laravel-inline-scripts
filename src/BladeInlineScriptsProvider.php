@@ -32,5 +32,10 @@ class BladeInlineScriptsProvider extends ServiceProvider
             __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/init-script.js' => base_path('js/color-scheme-switch-three-states/init-script.js'),
             __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/switch-script.js' => base_path('js/color-scheme-switch-three-states/switch-script.js'),
         ], ['color-scheme-switch-3-states-js', 'color-scheme-switch-3-states-all']);
+
+        $this->publishes([
+            __DIR__.'/../tests/js/color-scheme-switch-three-states/init-script.test.js' => base_path('tests/js/color-scheme-switch-three-states/init-script.test.js'),
+            __DIR__.'/../tests/js/color-scheme-switch-three-states/switch-script.test.js' => base_path('tests/js/color-scheme-switch-three-states/switch-script.test.js'),
+        ], ['color-scheme-switch-3-states-js-tests', 'color-scheme-switch-3-states-all']);
     }
 }

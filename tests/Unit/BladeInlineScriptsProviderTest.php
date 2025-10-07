@@ -167,8 +167,10 @@ test('published files have correct destination paths', function (): void {
             expect($destination)->toContain('resources/js/color-scheme-switch-two-states');
         } elseif (str_contains($source, 'scripts/ColorSchemeSwitchThreeStates/js')) {
             expect($destination)->toContain('js/color-scheme-switch-three-states');
-        } elseif (str_contains($source, 'tests/js')) {
+        } elseif (str_contains($source, 'tests/js/color-scheme-switch-two-states')) {
             expect($destination)->toContain('tests/js/color-scheme-switch-two-states');
+        } elseif (str_contains($source, 'tests/js/color-scheme-switch-three-states')) {
+            expect($destination)->toContain('tests/js/color-scheme-switch-three-states');
         } else {
             expect(false)->toBeTrue(); // Fail the test if an unexpected file is found
         }
