@@ -5,33 +5,37 @@
 @endphp
 
 <script>
-(function() {
+  (function() {
     window.inlineScripts = window.inlineScripts || {};
-    
+
     window.inlineScripts.refreshColorSchemeIcon = function() {
-        const currentScheme = localStorage.getItem('colorScheme');
-        
-        const icons = document.querySelectorAll('[data-colorschemeicon]');
-        icons.forEach(function(icon) {
-            const iconScheme = icon.getAttribute('data-icon');
-            if (iconScheme === currentScheme) {
-                icon.classList.remove('hidden');
-            } else {
-                icon.classList.add('hidden');
-            }
-        });
+      const currentScheme = localStorage.getItem('colorScheme');
+
+      const icons = document.querySelectorAll('[data-colorschemeicon]');
+      icons.forEach(function(icon) {
+        const iconScheme = icon.getAttribute('data-colorschemeicon');
+        if (iconScheme === currentScheme) {
+          icon.classList.remove('hidden');
+        } else {
+          icon.classList.add('hidden');
+        }
+      });
     };
 
     document.addEventListener('DOMContentLoaded', function() {
-        window.inlineScripts.refreshColorSchemeIcon();
+      window.inlineScripts.refreshColorSchemeIcon();
     });
-})();
+
+    document.addEventListener('colorSchemeChanged', function() {
+      window.inlineScripts.refreshColorSchemeIcon();
+    });
+  })();
 </script>
 
 <button
-    {{-- .switchColorScheme() is defined in switch-script.js --}}
-    title="Color scheme switcher"
-    onclick="window.inlineScripts.switchColorScheme(); window.inlineScripts.refreshColorSchemeIcon();"
+        {{-- .switchColorScheme() is defined in switch-script.js --}}
+        title="Color scheme switcher"
+        onclick="window.inlineScripts.switchColorScheme(); window.inlineScripts.refreshColorSchemeIcon();"
 >
 
     <span class="hidden" data-colorschemeicon="{{ SchemeTypeEnum::SYSTEM }}">

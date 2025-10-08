@@ -9,6 +9,8 @@
   };
 
   window.inlineScripts.switchColorScheme = function () {
+    const previousScheme = localStorage.colorScheme;
+
     if (localStorage.colorScheme === "__DARK__") {
 
       setColorScheme("__LIGHT__");
@@ -30,6 +32,15 @@
       localStorage.colorScheme = "__DARK__";
 
     }
+
+    const event = new CustomEvent("colorSchemeChanged", {
+      detail: {
+        previousScheme: previousScheme,
+        currentScheme: localStorage.colorScheme,
+      },
+    });
+
+    document.dispatchEvent(event);
   };
 
   document.addEventListener("keydown", (event) => {
