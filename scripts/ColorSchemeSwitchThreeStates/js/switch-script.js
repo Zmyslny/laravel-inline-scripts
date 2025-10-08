@@ -6,19 +6,15 @@
       "__DARK__",
       scheme === "__DARK__",
     );
-    document.documentElement.classList.toggle(
-      "__LIGHT__",
-      scheme === "__LIGHT__",
-    );
   };
 
   window.inlineScripts.switchColorScheme = function () {
-    if (document.documentElement.classList.contains("__DARK__") && localStorage.colorScheme === "__DARK__") {
+    if (localStorage.colorScheme === "__DARK__") {
 
       setColorScheme("__LIGHT__");
       localStorage.colorScheme = "__LIGHT__";
 
-    } else if (document.documentElement.classList.contains("__LIGHT__") && localStorage.colorScheme === "__LIGHT__") {
+    } else if (localStorage.colorScheme === "__LIGHT__") {
 
       // System preference
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {

@@ -9,7 +9,7 @@
   if (localStorage.colorScheme === "__DARK__") {
     setColorScheme("__DARK__");
   } else if (localStorage.colorScheme === "__LIGHT__") {
-    setColorScheme("__LIGHT__");
+    // do nothing, default is light
   } else if (window.matchMedia("(prefers-color-scheme: __DARK__)").matches) {
     setColorScheme("__DARK__");
   }
