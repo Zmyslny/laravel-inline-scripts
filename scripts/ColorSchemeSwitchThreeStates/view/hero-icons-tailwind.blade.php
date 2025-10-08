@@ -11,7 +11,7 @@
     window.inlineScripts.refreshColorSchemeIcon = function() {
         const currentScheme = localStorage.getItem('colorScheme');
         
-        const icons = document.querySelectorAll('[data-icon]');
+        const icons = document.querySelectorAll('[data-colorschemeicon]');
         icons.forEach(function(icon) {
             const iconScheme = icon.getAttribute('data-icon');
             if (iconScheme === currentScheme) {
@@ -34,7 +34,7 @@
     onclick="window.inlineScripts.switchColorScheme(); window.inlineScripts.refreshColorSchemeIcon();"
 >
 
-    <span class="hidden" data-icon="{{ SchemeTypeEnum::SYSTEM }}">
+    <span class="hidden" data-colorschemeicon="{{ SchemeTypeEnum::SYSTEM }}">
        {{-- https://heroicons.com: hero.outline.computer-desktop --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
@@ -44,7 +44,7 @@
         </svg>
     </span>
 
-    <span class="hidden" data-icon="{{ SchemeTypeEnum::LIGHT }}">
+    <span class="hidden" data-colorschemeicon="{{ SchemeTypeEnum::LIGHT }}">
         {{-- https://heroicons.com: hero.outline.sun --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
@@ -54,7 +54,7 @@
         </svg>
     </span>
 
-    <span class="hidden" data-icon="{{ SchemeTypeEnum::DARK }}">
+    <span class="hidden" data-colorschemeicon="{{ SchemeTypeEnum::DARK }}">
         {{-- https://heroicons.com: hero.outline.moon --}}
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 24 24"
