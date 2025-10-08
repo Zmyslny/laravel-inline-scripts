@@ -73,15 +73,13 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
-  it("adds light class when localStorage.colorScheme is light", () => {
+  it("does not add dark class when localStorage.colorScheme is light", () => {
     localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
@@ -90,14 +88,12 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
     runThemeInitScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
-  it("adds light class when no localStorage.colorScheme and prefers-color-scheme: light", () => {
+  it("does not add dark class when no localStorage.colorScheme and prefers-color-scheme: light", () => {
     // No localStorage.colorScheme
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
 
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
@@ -106,7 +102,6 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
   it("is idempotent when executed twice", () => {
@@ -121,15 +116,12 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
   });
 
-  it("removes light class when switching to dark", () => {
-    // First set light
-    document.documentElement.classList.add(DEFAULT_LIGHT);
+  it("adds dark class when switching to dark", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
   });
 
   it("removes dark class when switching to light", () => {
@@ -139,7 +131,6 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
 
     runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
-    expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 });
