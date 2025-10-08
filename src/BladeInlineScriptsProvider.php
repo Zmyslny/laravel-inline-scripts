@@ -38,6 +38,10 @@ class BladeInlineScriptsProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../scripts/ColorSchemeSwitchTwoStates/view/hero-icons-tailwind-alpine.blade.php' => resource_path('views/color-scheme-switch-two-states/hero-icons-tailwind-alpine.blade.php'),
         ], ['color-scheme-switch-2-states-views', 'color-scheme-switch-2-states-all']);
+
+        $this->publishes([
+            __DIR__.'/../scripts/ColorSchemeSwitchTwoStates/view/hero-icons-tailwind.blade.php' => resource_path('views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php'),
+        ], ['color-scheme-switch-2-states-views', 'color-scheme-switch-2-states-all']);
     }
 
     public function publishColorScheme3States(): void
@@ -54,6 +58,10 @@ class BladeInlineScriptsProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/view/hero-icons-tailwind-alpine.blade.php' => resource_path('views/color-scheme-switch-three-states/hero-icons-tailwind-alpine.blade.php'),
+        ], ['color-scheme-switch-3-states-views', 'color-scheme-switch-3-states-all']);
+
+        $this->publishes([
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/view/hero-icons-tailwind.blade.php' => resource_path('views/color-scheme-switch-three-states/hero-icons-tailwind.blade.php'),
         ], ['color-scheme-switch-3-states-views', 'color-scheme-switch-3-states-all']);
     }
 }
