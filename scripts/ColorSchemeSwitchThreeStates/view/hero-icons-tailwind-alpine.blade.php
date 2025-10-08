@@ -5,7 +5,7 @@
 @endphp
 
 <button
-        x-data="{
+    x-data="{
         refresh() {
             this.isSystem = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::SYSTEM }}';
             this.isDark = localStorage.getItem('colorScheme') === '{{  SchemeTypeEnum::DARK }}';
