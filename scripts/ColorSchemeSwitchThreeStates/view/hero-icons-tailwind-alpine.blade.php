@@ -4,20 +4,23 @@
     $iconClasses = $iconClasses ?? 'size-4';
 @endphp
 
-<button
-    x-data="{
-        refresh() {
-            this.isSystem = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::SYSTEM }}';
-            this.isDark = localStorage.getItem('colorScheme') === '{{  SchemeTypeEnum::DARK }}';
-            this.isLight = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::LIGHT }}';
-        }
-    }"
-        x-init="refresh()"
+<button x-data="{
+            refresh() {
+                this.isSystem = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::SYSTEM }}';
+                this.isDark = localStorage.getItem('colorScheme') === '{{  SchemeTypeEnum::DARK }}';
+                this.isLight = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::LIGHT }}';
+            },
+        }"
+        x-init="refresh(); (function () {
+            document.addEventListener('colorSchemeChanged', function() {
+                refresh();
+            });
+        })()"
         {{--
             .switchColorScheme() is defined in switch-script.js
         --}}
         @click="window.inlineScripts.switchColorScheme(); refresh()"
-        @keydown.window="refresh()"
+        @color-scheme-changed.document="refresh()"
         title="Color scheme switcher"
 >
     <span class="hidden"
