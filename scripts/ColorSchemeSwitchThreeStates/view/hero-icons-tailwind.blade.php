@@ -21,6 +21,10 @@
             }
         });
     };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        window.inlineScripts.refreshColorSchemeIcon();
+    });
 })();
 </script>
 
