@@ -43,7 +43,7 @@ function dispatchKeydown(key, { ctrlKey = false, altKey = false, metaKey = false
 }
 
 // IIFE = Immediately Invoked Function Expression
-describe("ThemeSwitchScript.js IIFE behavior", () => {
+describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   beforeEach(() => {
     document.documentElement.className = "";
     try {
