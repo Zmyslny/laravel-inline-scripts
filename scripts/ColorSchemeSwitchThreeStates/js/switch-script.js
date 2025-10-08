@@ -11,6 +11,7 @@
   window.inlineScripts.switchColorScheme = function () {
     const previousScheme = localStorage.colorScheme;
 
+    // Cycle: Dark -> Light -> System -> Dark -> ...
     if (localStorage.colorScheme === "__DARK__") {
       setColorScheme("__LIGHT__");
       localStorage.colorScheme = "__LIGHT__";
