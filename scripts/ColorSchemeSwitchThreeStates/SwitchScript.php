@@ -6,7 +6,6 @@ namespace Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchThreeStates;
 
 use InvalidArgumentException;
 use Throwable;
-use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SchemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class SwitchScript extends FromFileWithPlaceholders
@@ -52,6 +51,7 @@ class SwitchScript extends FromFileWithPlaceholders
             '__TOGGLE_KEY__' => $this->key,
             '__DARK__' => SchemeTypeEnum::DARK->value,
             '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
+            '__SYSTEM__' => SchemeTypeEnum::SYSTEM->value,
         ];
     }
 

@@ -6,7 +6,7 @@
         {{--
             .switchColorScheme() is defined in switch-script.js
         --}}
-        @click="window.inlineScripts.switchColorScheme();"
+        onclick="window.inlineScripts.switchColorScheme();"
         title="Color scheme switcher"
 >
 

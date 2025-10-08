@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchThreeStates;
 
-use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\SchemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class InitScript extends FromFileWithPlaceholders

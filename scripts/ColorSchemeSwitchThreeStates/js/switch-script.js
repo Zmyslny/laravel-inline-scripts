@@ -26,7 +26,7 @@
       } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
         setColorScheme("__LIGHT__");
       }
-      localStorage.colorScheme = "system";
+      localStorage.colorScheme = "__SYSTEM__";
 
     } else {
 
