@@ -17,6 +17,9 @@
             <directory>src</directory>
             <directory>scripts</directory>
         </include>
+        <exclude>
+            <directory>scripts/**/view</directory>
+        </exclude>
     </source>
     <php>
         <env name="BCRYPT_ROUNDS" value="4"/>
