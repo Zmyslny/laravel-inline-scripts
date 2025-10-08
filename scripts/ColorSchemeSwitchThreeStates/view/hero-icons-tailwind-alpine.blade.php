@@ -20,7 +20,6 @@
             .switchColorScheme() is defined in switch-script.js
         --}}
         @click="window.inlineScripts.switchColorScheme(); refresh()"
-        @color-scheme-changed.document="refresh()"
         title="Color scheme switcher"
 >
     <span class="hidden"
