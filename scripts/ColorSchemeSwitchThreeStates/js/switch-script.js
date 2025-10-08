@@ -12,12 +12,9 @@
     const previousScheme = localStorage.colorScheme;
 
     if (localStorage.colorScheme === "__DARK__") {
-
       setColorScheme("__LIGHT__");
       localStorage.colorScheme = "__LIGHT__";
-
     } else if (localStorage.colorScheme === "__LIGHT__") {
-
       // System preference
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         setColorScheme("__DARK__");
@@ -25,12 +22,9 @@
         setColorScheme("__LIGHT__");
       }
       localStorage.colorScheme = "__SYSTEM__";
-
     } else {
-
       setColorScheme("__DARK__");
       localStorage.colorScheme = "__DARK__";
-
     }
 
     const event = new CustomEvent("colorSchemeChanged", {
