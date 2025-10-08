@@ -167,8 +167,12 @@ test('published files have correct destination paths', function (): void {
     foreach ($published as $source => $destination) {
         if (str_contains($source, 'scripts/ColorSchemeSwitchTwoStates/js')) {
             expect($destination)->toContain('resources/js/color-scheme-switch-two-states');
+        } elseif (str_contains($source, 'scripts/ColorSchemeSwitchTwoStates/view')) {
+            expect($destination)->toContain('resources/views/color-scheme-switch-two-states');
         } elseif (str_contains($source, 'scripts/ColorSchemeSwitchThreeStates/js')) {
             expect($destination)->toContain('js/color-scheme-switch-three-states');
+        } elseif (str_contains($source, 'scripts/ColorSchemeSwitchThreeStates/view')) {
+            expect($destination)->toContain('resources/views/color-scheme-switch-three-states');
         } elseif (str_contains($source, 'tests/js/color-scheme-switch-two-states')) {
             expect($destination)->toContain('tests/js/color-scheme-switch-two-states');
         } elseif (str_contains($source, 'tests/js/color-scheme-switch-three-states')) {
