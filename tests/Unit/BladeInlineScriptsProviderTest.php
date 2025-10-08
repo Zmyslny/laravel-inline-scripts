@@ -137,16 +137,18 @@ test('boot method sets up correct publish groups', function (): void {
     // Assert
     $groups = ServiceProvider::$publishGroups ?? [];
 
-    expect($groups)->toHaveKey('color-scheme-switch-2-states-js')
-        ->and($groups)->toHaveKey('color-scheme-switch-2-states-js-tests')
-        ->and($groups)->toHaveKey('color-scheme-switch-2-states-all');
+    expect($groups)->toHaveKey('color-scheme-2-states-js')
+        ->and($groups)->toHaveKey('color-scheme-2-states-js-tests')
+        ->and($groups)->toHaveKey('color-scheme-2-states-views')
+        ->and($groups)->toHaveKey('color-scheme-2-states-all');
 
     // Verify 'theme-switch-2-states-all' includes all the files
-    $allGroupFiles = $groups['color-scheme-switch-2-states-all'] ?? [];
-    $jsFiles = $groups['color-scheme-switch-2-states-js'] ?? [];
-    $jsTestFiles = $groups['color-scheme-switch-2-states-js-tests'] ?? [];
+    $allGroupFiles = $groups['color-scheme-2-states-all'] ?? [];
+    $jsFiles = $groups['color-scheme-2-states-js'] ?? [];
+    $jsTestFiles = $groups['color-scheme-2-states-js-tests'] ?? [];
+    $viewFiles = $groups['color-scheme-2-states-views'] ?? [];
 
-    $expectedAllFiles = array_merge($jsFiles, $jsTestFiles);
+    $expectedAllFiles = array_merge($jsFiles, $jsTestFiles, $viewFiles);
 
     expect(count($allGroupFiles))->toBe(count($expectedAllFiles));
 });
