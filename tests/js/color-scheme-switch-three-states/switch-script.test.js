@@ -124,7 +124,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-      expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_SYSTEM);
+      expect(localStorage.getItem("colorScheme")).toBe(null);
     });
 
     it("transitions from light to system with light preference", () => {
@@ -134,7 +134,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-      expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_SYSTEM);
+      expect(localStorage.getItem("colorScheme")).toBe(null);
     });
 
     it("transitions from light to system with no preference", () => {
@@ -144,7 +144,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
-      expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_SYSTEM);
+      expect(localStorage.getItem("colorScheme")).toBe(null);
     });
 
     it("transitions from system to dark", () => {
@@ -180,7 +180,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
 
       // Light -> System (with dark preference)
       window.inlineScripts.switchColorScheme();
-      expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_SYSTEM);
+      expect(localStorage.getItem("colorScheme")).toBe(null);
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
 
       // System -> Dark
