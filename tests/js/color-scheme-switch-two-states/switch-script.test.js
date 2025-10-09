@@ -9,10 +9,10 @@ const DEFAULT_TOGGLE_KEY = "d";
 const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 
-function runThemeSwitchScript({
+function runSwitchScript({
   dark = DEFAULT_DARK,
   light = DEFAULT_LIGHT,
-  functionName = "themeSwitch",
+  functionName = "colorSchemeSwitch",
   toggleKey = DEFAULT_TOGGLE_KEY,
 } = {}) {
   // Load the template and substitute placeholders like PHP does
@@ -64,7 +64,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
     expect(localStorage.getItem("colorScheme")).toBe(null);
 
-    runThemeSwitchScript();
+    runSwitchScript();
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
@@ -77,7 +77,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("does nothing when modifier keys are pressed", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     dispatchKeydown(DEFAULT_TOGGLE_KEY, { ctrlKey: true });
     dispatchKeydown(DEFAULT_TOGGLE_KEY, { altKey: true });
@@ -88,7 +88,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("uses a custom toggle key", () => {
-    runThemeSwitchScript({ toggleKey: "t" });
+    runSwitchScript({ toggleKey: "t" });
 
     // wrong key - no toggle
     dispatchKeydown(DEFAULT_TOGGLE_KEY);
@@ -101,7 +101,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("does not toggle when an input field is focused", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     // Create and focus an input element
     const input = document.createElement("input");
@@ -121,7 +121,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("does not toggle when a textarea is focused", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     // Create and focus a textarea element
     const textarea = document.createElement("textarea");
@@ -141,7 +141,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("does not toggle when a select field is focused", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     // Create and focus a select element
     const select = document.createElement("select");
@@ -165,7 +165,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("does not toggle when a contentEditable element is focused", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     // Create and focus a contentEditable element
     const div = document.createElement("div");
@@ -187,7 +187,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
   });
 
   it("toggles normally when input is unfocused", () => {
-    runThemeSwitchScript();
+    runSwitchScript();
 
     // Create an input but don't focus it
     const input = document.createElement("input");

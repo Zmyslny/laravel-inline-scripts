@@ -8,10 +8,10 @@ const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchTwoStat
 const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 
-function runColorSchemeInitScript({
+function runInitScript({
   dark = DEFAULT_DARK,
   light = DEFAULT_LIGHT,
-  functionName = "themeTypeInit",
+  functionName = "colorSchemeInit",
   matchMediaMatches = false,
 } = {}) {
   // Load the template and substitute placeholders like PHP does
@@ -67,7 +67,7 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
   it("adds dark class when localStorage.colorScheme is dark", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runInitScript({ matchMediaMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
@@ -76,7 +76,7 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
   it("adds no class when localStorage.colorScheme is light", () => {
     localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runInitScript({ matchMediaMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
@@ -84,7 +84,7 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
 
   it("adds dark class when no localStorage.colorScheme and prefers-color-scheme: dark", () => {
     // No localStorage.colorScheme
-    runColorSchemeInitScript({ matchMediaMatches: true });
+    runInitScript({ matchMediaMatches: true });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
@@ -92,7 +92,7 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
 
   it("adds no class when no localStorage.colorScheme and no dark preference", () => {
     // No localStorage.colorScheme and matchMedia false
-    runColorSchemeInitScript({ matchMediaMatches: false });
+    runInitScript({ matchMediaMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
     expect(document.documentElement.classList.contains(DEFAULT_LIGHT)).toBe(false);
@@ -102,8 +102,8 @@ describe("ColorSchemeInitScript.js IIFE behavior", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
     expect(() => {
-      runColorSchemeInitScript({ matchMediaMatches: false });
-      runColorSchemeInitScript({ matchMediaMatches: false });
+      runInitScript({ matchMediaMatches: false });
+      runInitScript({ matchMediaMatches: false });
     }).not.toThrow();
 
     // classList does not duplicate tokens; just ensure it is present

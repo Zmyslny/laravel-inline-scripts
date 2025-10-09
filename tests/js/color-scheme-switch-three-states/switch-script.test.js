@@ -10,10 +10,10 @@ const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 const DEFAULT_SYSTEM = "system";
 
-function runThemeSwitchScript({
+function runSwitchScript({
   dark = DEFAULT_DARK,
   light = DEFAULT_LIGHT,
-  functionName = "themeSwitch",
+  functionName = "colorSchemeSwitch",
   toggleKey = DEFAULT_TOGGLE_KEY,
   matchMediaDarkMatches = false,
   matchMediaLightMatches = false,
@@ -102,7 +102,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
@@ -112,7 +112,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
     it("transitions from light to system with dark preference", () => {
       localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-      runThemeSwitchScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
+      runSwitchScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
@@ -122,7 +122,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
     it("transitions from light to system with light preference", () => {
       localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-      runThemeSwitchScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
+      runSwitchScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
@@ -132,7 +132,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
     it("transitions from light to system with no preference", () => {
       localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-      runThemeSwitchScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+      runSwitchScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
@@ -142,7 +142,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
     it("transitions from system to dark", () => {
       localStorage.setItem("colorScheme", DEFAULT_SYSTEM);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
@@ -152,7 +152,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
     it("transitions from undefined/empty to dark", () => {
       // No colorScheme set in localStorage
 
-      runThemeSwitchScript();
+      runSwitchScript();
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
@@ -163,7 +163,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript({ matchMediaDarkMatches: true });
+      runSwitchScript({ matchMediaDarkMatches: true });
 
       // Dark -> Light
       window.inlineScripts.switchColorScheme();
@@ -190,7 +190,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       const eventListener = vi.fn();
       document.addEventListener("colorSchemeChanged", eventListener);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       window.inlineScripts.switchColorScheme();
 
       expect(eventListener).toHaveBeenCalledTimes(1);
@@ -207,7 +207,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       const eventListener = vi.fn();
       document.addEventListener("colorSchemeChanged", eventListener);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       window.inlineScripts.switchColorScheme();
 
       expect(eventListener).toHaveBeenCalledTimes(1);
@@ -224,7 +224,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       dispatchKeydown(DEFAULT_TOGGLE_KEY);
 
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
@@ -235,7 +235,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       dispatchKeydown(DEFAULT_TOGGLE_KEY, { ctrlKey: true });
       expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
@@ -251,7 +251,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript({ toggleKey: "t" });
+      runSwitchScript({ toggleKey: "t" });
 
       // wrong key - no toggle
       dispatchKeydown(DEFAULT_TOGGLE_KEY);
@@ -267,7 +267,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       // Create and focus an input element
       const input = document.createElement("input");
@@ -289,7 +289,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       // Create and focus a textarea element
       const textarea = document.createElement("textarea");
@@ -311,7 +311,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       // Create and focus a select element
       const select = document.createElement("select");
@@ -337,7 +337,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       // Create and focus a contentEditable element
       const div = document.createElement("div");
@@ -361,7 +361,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript();
+      runSwitchScript();
 
       // Create an input but don't focus it
       const input = document.createElement("input");
@@ -385,7 +385,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       const eventListener = vi.fn();
       document.addEventListener("colorSchemeChanged", eventListener);
 
-      runThemeSwitchScript();
+      runSwitchScript();
       dispatchKeydown(DEFAULT_TOGGLE_KEY);
 
       expect(eventListener).toHaveBeenCalledTimes(1);
@@ -402,8 +402,8 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
 
       expect(() => {
-        runThemeSwitchScript();
-        runThemeSwitchScript();
+        runSwitchScript();
+        runSwitchScript();
       }).not.toThrow();
 
       // Should still work after double initialization
@@ -418,7 +418,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", customDark);
       document.documentElement.classList.add(customDark);
 
-      runThemeSwitchScript({ dark: customDark, light: customLight });
+      runSwitchScript({ dark: customDark, light: customLight });
       window.inlineScripts.switchColorScheme();
 
       expect(document.documentElement.classList.contains(customDark)).toBe(false);
@@ -429,7 +429,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runThemeSwitchScript({ matchMediaDarkMatches: true });
+      runSwitchScript({ matchMediaDarkMatches: true });
 
       // Call multiple times rapidly
       window.inlineScripts.switchColorScheme(); // Dark -> Light

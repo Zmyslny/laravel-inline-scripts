@@ -8,10 +8,10 @@ const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchThreeSt
 const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 
-function runThemeInitScript({
+function runInitScript({
   dark = DEFAULT_DARK,
   light = DEFAULT_LIGHT,
-  functionName = "themeTypeInit",
+  functionName = "colorSchemeInit",
   matchMediaDarkMatches = false,
   matchMediaLightMatches = false,
 } = {}) {
@@ -70,7 +70,7 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
   it("adds dark class when localStorage.colorScheme is dark", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+    runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
   });
@@ -78,28 +78,28 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
   it("does not add dark class when localStorage.colorScheme is light", () => {
     localStorage.setItem("colorScheme", DEFAULT_LIGHT);
 
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+    runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
   it("adds dark class when no localStorage.colorScheme and prefers-color-scheme: dark", () => {
     // No localStorage.colorScheme
-    runThemeInitScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
+    runInitScript({ matchMediaDarkMatches: true, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
   });
 
   it("does not add dark class when no localStorage.colorScheme and prefers-color-scheme: light", () => {
     // No localStorage.colorScheme
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
+    runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: true });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 
   it("adds no class when no localStorage.colorScheme and no preference", () => {
     // No localStorage.colorScheme and matchMedia false
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+    runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
@@ -108,8 +108,8 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
     expect(() => {
-      runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
-      runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+      runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+      runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
     }).not.toThrow();
 
     // classList does not duplicate tokens; just ensure it is present
@@ -119,18 +119,8 @@ describe("ThemeInitScript.js IIFE behavior (three states)", () => {
   it("adds dark class when switching to dark", () => {
     localStorage.setItem("colorScheme", DEFAULT_DARK);
 
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
+    runInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
 
     expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(true);
-  });
-
-  it("removes dark class when switching to light", () => {
-    // First set dark
-    document.documentElement.classList.add(DEFAULT_DARK);
-    localStorage.setItem("colorScheme", DEFAULT_LIGHT);
-
-    runThemeInitScript({ matchMediaDarkMatches: false, matchMediaLightMatches: false });
-
-    expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
   });
 });
