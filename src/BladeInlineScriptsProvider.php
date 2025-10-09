@@ -47,8 +47,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
     public function publishColorScheme3States(): void
     {
         $this->publishes([
-            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/init-script.js' => base_path('js/color-scheme-switch-three-states/init-script.js'),
-            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/switch-script.js' => base_path('js/color-scheme-switch-three-states/switch-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/init-script.js' => resource_path('js/color-scheme-switch-three-states/init-script.js'),
+            __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/js/switch-script.js' => resource_path('js/color-scheme-switch-three-states/switch-script.js'),
         ], ['color-scheme-3-states-js', 'color-scheme-3-states-all']);
 
         $this->publishes([
