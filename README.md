@@ -157,9 +157,6 @@ php artisan vendor:publish --tag=color-scheme-2-states-js
 
 That will copy the scripts to `resources/js/color-scheme-switch-two-states/[init-script.js, switch-script.js]`.
 
-`init-script.js` - initializes the theme based on the user's previous choice stored in `localStorage`.  
-`switch-script.js` - a function to toggle between light and dark themes by hitting a selected KEY and saves the choice in `localStorage`.
-
 **Step 2**: Register the scripts in your `AppServiceProvider`:
 
 ```php
@@ -238,7 +235,7 @@ php artisan vendor:publish --tag=color-scheme-2-states-js-tests
 php artisan vendor:publish --tag=color-scheme-3-states-js-tests
 ```
 
-You can also publish JS code with test files at once:
+You can also publish JS scripts, JS test files and views at once:
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-all
