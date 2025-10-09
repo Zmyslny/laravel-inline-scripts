@@ -51,7 +51,6 @@ class SwitchScript extends FromFileWithPlaceholders
             '__TOGGLE_KEY__' => $this->key,
             '__DARK__' => SchemeTypeEnum::DARK->value,
             '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
-            '__SYSTEM__' => SchemeTypeEnum::SYSTEM->value,
         ];
     }
 

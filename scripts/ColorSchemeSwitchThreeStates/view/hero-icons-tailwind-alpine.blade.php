@@ -6,7 +6,7 @@
 
 <button x-data="{
             refresh() {
-                this.isSystem = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::SYSTEM }}';
+                this.isSystem = localStorage.getItem('colorScheme') === null;
                 this.isDark = localStorage.getItem('colorScheme') === '{{  SchemeTypeEnum::DARK }}';
                 this.isLight = localStorage.getItem('colorScheme') === '{{ SchemeTypeEnum::LIGHT }}';
             },

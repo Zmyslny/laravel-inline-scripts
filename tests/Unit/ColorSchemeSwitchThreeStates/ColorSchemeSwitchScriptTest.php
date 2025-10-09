@@ -77,6 +77,5 @@ it('returns proper values from getPlaceholders()', function (): void {
         '__TOGGLE_KEY__' => 'k',
         '__DARK__' => SchemeTypeEnum::DARK->value,
         '__LIGHT__' => SchemeTypeEnum::LIGHT->value,
-        '__SYSTEM__' => SchemeTypeEnum::SYSTEM->value,
     ]);
 });

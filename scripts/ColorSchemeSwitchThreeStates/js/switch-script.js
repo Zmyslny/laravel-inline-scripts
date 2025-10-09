@@ -22,7 +22,7 @@
       } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
         setColorScheme("__LIGHT__");
       }
-      localStorage.colorScheme = "__SYSTEM__";
+      localStorage.removeItem("colorScheme");
     } else {
       setColorScheme("__DARK__");
       localStorage.colorScheme = "__DARK__";
