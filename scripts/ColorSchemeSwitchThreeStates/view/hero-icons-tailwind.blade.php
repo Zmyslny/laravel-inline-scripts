@@ -9,7 +9,8 @@
     window.inlineScripts = window.inlineScripts || {};
 
     window.inlineScripts.refreshColorSchemeIcon = function() {
-      const currentScheme = localStorage.getItem('colorScheme');
+      // In the case of 'system', the localStorage item is not set, so we treat it as SYSTEM
+      const currentScheme = localStorage.getItem('colorScheme') ?? '{{ SchemeTypeEnum::SYSTEM }}';
 
       const icons = document.querySelectorAll('[data-colorschemeicon]');
       icons.forEach(function(icon) {
