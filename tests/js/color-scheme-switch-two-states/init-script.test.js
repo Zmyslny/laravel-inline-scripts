@@ -8,12 +8,7 @@ const scriptPath = path.resolve(process.cwd(), "scripts/ColorSchemeSwitchTwoStat
 const DEFAULT_DARK = "dark";
 const DEFAULT_LIGHT = "light";
 
-function runInitScript({
-  dark = DEFAULT_DARK,
-  light = DEFAULT_LIGHT,
-  functionName = "colorSchemeInit",
-  matchMediaMatches = false,
-} = {}) {
+function runInitScript({ dark = DEFAULT_DARK, light = DEFAULT_LIGHT, functionName = "colorSchemeInit", matchMediaMatches = false } = {}) {
   // Load the template and substitute placeholders like PHP does
   let src = fs.readFileSync(scriptPath, "utf8");
   src = src.replaceAll("__FUNCTION_NAME__", functionName).replaceAll("__DARK__", dark).replaceAll("__LIGHT__", light);
