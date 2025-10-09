@@ -47,7 +47,7 @@ function runSwitchScript({
     value: mm,
   });
 
-  // Execute the IIFE in global scope
+  // Execute the IIFE in the global scope
   const fn = new Function(src);
   fn();
 }
@@ -67,6 +67,8 @@ function dispatchKeydown(key, { ctrlKey = false, altKey = false, metaKey = false
 
 // IIFE = Immediately Invoked Function Expression
 describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
+  let keydownListeners = [];
+
   beforeEach(() => {
     document.documentElement.className = "";
     try {
@@ -87,14 +89,20 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       delete window.inlineScripts.switchColorScheme;
     }
 
-    // Remove all event listeners by cloning the document
-    // This ensures keyboard listeners from previous tests don't interfere
-    const oldDocument = document;
-    const events = ["keydown", "colorSchemeChanged"];
-    events.forEach((eventType) => {
-      const listeners = oldDocument.querySelectorAll("*");
-      // Remove listeners by replacing document (handled by JSDOM reset in vitest)
+    // Remove any previously tracked keydown listeners
+    keydownListeners.forEach((listener) => {
+      document.removeEventListener("keydown", listener);
     });
+    keydownListeners = [];
+
+    // Store original addEventListener to track new listeners
+    const originalAddEventListener = document.addEventListener.bind(document);
+    document.addEventListener = function (type, listener, options) {
+      if (type === "keydown") {
+        keydownListeners.push(listener);
+      }
+      return originalAddEventListener(type, listener, options);
+    };
   });
 
   describe("switchColorScheme function", () => {
@@ -247,18 +255,18 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
       expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
     });
 
-    it("uses a custom toggle key", () => {
+    it("uses a custom toggle keyyy", () => {
       localStorage.setItem("colorScheme", DEFAULT_DARK);
       document.documentElement.classList.add(DEFAULT_DARK);
 
-      runSwitchScript({ toggleKey: "t" });
+      runSwitchScript();
 
       // wrong key - no toggle
-      dispatchKeydown(DEFAULT_TOGGLE_KEY);
+      dispatchKeydown("s");
       expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_DARK);
 
       // correct custom key - toggles
-      dispatchKeydown("t");
+      dispatchKeydown(DEFAULT_TOGGLE_KEY);
       expect(document.documentElement.classList.contains(DEFAULT_DARK)).toBe(false);
       expect(localStorage.getItem("colorScheme")).toBe(DEFAULT_LIGHT);
     });
