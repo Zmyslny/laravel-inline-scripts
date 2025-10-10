@@ -225,5 +225,3 @@ php artisan vendor:publish --tag=color-scheme-3-states-all
 
 - **Two States:** Switching between light and dark theme (2 states)
 - **Three States:** Cycling between light, dark, and system theme (3 states)
-
-The three-state variant is useful when you want to give users the option to follow their operating system's color scheme preference, in addition to explicitly choosing light or dark mode.

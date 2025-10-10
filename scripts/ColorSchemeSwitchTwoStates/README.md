@@ -199,5 +199,3 @@ php artisan vendor:publish --tag=color-scheme-2-states-all
 
 - **Two States:** Switching between light and dark theme (2 states)
 - **Three States:** Switching between light, dark, and system theme (3 states)
-
-If you need an "auto/system" option, use the Three States variant.
