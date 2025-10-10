@@ -1,5 +1,6 @@
 <p align="center">
-    <a href="https://github.com/Zmyslny/laravel-inline-scripts/actions"><img alt="GitHub Workflow Status (main)" src="https://img.shields.io/github/actions/workflow/status/Zmyslny/laravel-inline-scripts/tests.yml?branch=main&label=Tests%201.x"></a>
+    <a href="https://github.com/zmyslny/laravel-inline-scripts/actions"><img src="https://github.com/zmyslny/laravel-inline-scripts/actions/workflows/tests.yml/badge.svg"  alt="Build Status" ></a>
+    <a href="https://packagist.org/packages/zmyslny/laravel-inline-scripts"><img src="https://poser.pugx.org/zmyslny/laravel-inline-scripts/v/stable.svg" alt="Latest Version"></a>
 </p>
 
 ------
@@ -12,8 +13,8 @@ Allows ✨:
 - process / modify the script in a dedicated PHP class.
 
 Additionally - has build in **ready-to-use** scripts:
- - color scheme switching script (two states - light/dark)
- - color scheme switching script (three states - light/dark/system)
+ - two states - light / dark - color scheme switching script _(+ view with icons)_
+ - three states - light / dark / system - color scheme switching script _(+ view with icons)_
  - _more to come_
 
 ### Requirements
@@ -60,7 +61,7 @@ Use the custom Blade directive in your template to inline the scripts:
 
 Done.
 
-### What are Inline Scripts?
+### What are inline scripts?
 
 Inline scripts are JavaScript code blocks embedded directly into HTML documents. Traditionally, developers manually write these scripts as strings in the `<head>` section or at the end of the `<body>` section:
 
@@ -77,17 +78,21 @@ Inline scripts are JavaScript code blocks embedded directly into HTML documents.
 
 This package makes it much more convenient by allowing you to keep inline scripts in separate JavaScript files, which enables ✨:
 
-- **Complex script processing** using dedicated PHP classes _(see example below)_
-- **Variable passing** from PHP to JavaScript _(see example below)_
-- **Unit testing** your JavaScript code using tools like Vitest or Jest _(see bonus section below)_
-- **Better code organization** and maintainability
-- **IDE support** with syntax highlighting and error detection in dedicated JS files
+- **Complex script processing** : using dedicated PHP classes _(see [example bellow](#using-prepared-php-classes))_
+- **Variable passing** : from PHP to JavaScript _(see [example bellow](#using-prepared-php-classes))_
+- **Unit testing** : your JavaScript code using tools like Vitest or Jest _(see [bonus section](#bonus))_
+- **IDE support** : with syntax highlighting and error detection in dedicated JS files _(see [example bellow](#using-js-code-directly))_
 
 # Explanation Through Example: Color scheme switch script
 
 Modern websites often provide users with the ability to switch between light and dark themes. In such cases, you might want to remember the user's choice using `localStorage` and apply the selected theme on page load. To avoid **FOUC** (Flash of Unstyled Content), you can use _inline script_ to set the theme before the page fully loads.
 
 The folowing example demonstrates by using **two-state** color scheme switch script (light/dark). 
+
+> **Icons used** (from [HeroIcons](https://heroicons.com)):
+>
+> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" /></svg> **Sun** (Light mode)
+> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" /></svg> **Moon** (Dark mode)
 
 **Three-state** (light/dark/system) is also available. Just replace `2-states- | ..TwoStates` with `3-states- | ..ThreeStates` in the commands and code below.
 
@@ -133,7 +138,6 @@ Now hit the `d` key to toggle between a light and dark color scheme, and your ch
 
 **Step 3 (optional)**: Add the view with color scheme icons to your website:
 
-Get the available view files:
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-views
 ```
@@ -141,11 +145,6 @@ php artisan vendor:publish --tag=color-scheme-2-states-views
 Select the one that suits your frontend and insert it in your template: 
 - Blade + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php`
 - Livewire/Alpine + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind-alpine.blade.php`
-
-> **Icons used** (from [HeroIcons](https://heroicons.com)):
->
-> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" /></svg> **Sun** (Light mode) 
-> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" /></svg> **Moon** (Dark mode)
 
 ### Using JS code directly
 
@@ -194,7 +193,6 @@ Now hit the `d` key to toggle between a light and dark color scheme, and your ch
 
 **Step 3 (optional)**: Add the view with color scheme icons to your website:
 
-Get the available view files:
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-views
 ```
@@ -202,11 +200,6 @@ php artisan vendor:publish --tag=color-scheme-2-states-views
 Select the one that suits your frontend and insert it in your template:
 - Blade + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php`
 - Livewire/Alpine + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind-alpine.blade.php`
-
-> **Icons used** (from [HeroIcons](https://heroicons.com)):
->
-> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" /></svg> **Sun** (Light mode)
-> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" /></svg> **Moon** (Dark mode)
 
 ## Advanced Usage: Custom Script Processing
 
@@ -226,7 +219,7 @@ abstract class FromFile implements RenderableScript;
 abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders;
 ```
 
-## Bonuses
+## Bonus
 
 Unit tests for JS scripts
 ```bash
