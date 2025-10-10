@@ -44,6 +44,8 @@ function dispatchKeydown(key, { ctrlKey = false, altKey = false, metaKey = false
 
 // IIFE = Immediately Invoked Function Expression
 describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
+  let keydownListeners = [];
+
   beforeEach(() => {
     document.documentElement.className = "";
     try {
@@ -58,6 +60,26 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
         clear: () => store.clear(),
       };
     }
+
+    // Clear window.inlineScripts before each test
+    if (window.inlineScripts) {
+      delete window.inlineScripts.switchColorScheme;
+    }
+
+    // Remove any previously tracked keydown listeners
+    keydownListeners.forEach((listener) => {
+      document.removeEventListener("keydown", listener);
+    });
+    keydownListeners = [];
+
+    // Store original addEventListener to track new listeners
+    const originalAddEventListener = document.addEventListener.bind(document);
+    document.addEventListener = function (type, listener, options) {
+      if (type === "keydown") {
+        keydownListeners.push(listener);
+      }
+      return originalAddEventListener(type, listener, options);
+    };
   });
 
   it("toggles dark class and updates localStorage on default key press", () => {
@@ -203,5 +225,96 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
 
     // Clean up
     document.body.removeChild(input);
+  });
+
+  it("dispatches colorSchemeChanged event when toggling color scheme", () => {
+    runSwitchScript();
+
+    let eventDetail = null;
+
+    // Listen for the custom event - first toggle
+    const handler1 = (e) => {
+      eventDetail = e.detail;
+    };
+    document.addEventListener("colorSchemeChanged", handler1, { once: true });
+
+    // Initially no scheme is set
+    expect(localStorage.getItem("colorScheme")).toBe(null);
+
+    // Toggle to dark
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+
+    expect(eventDetail).not.toBe(null);
+    expect(eventDetail).toEqual({
+      previousScheme: undefined,
+      currentScheme: DEFAULT_DARK,
+    });
+
+    // Reset for next toggle
+    eventDetail = null;
+
+    // Listen for the custom event - second toggle
+    const handler2 = (e) => {
+      eventDetail = e.detail;
+    };
+    document.addEventListener("colorSchemeChanged", handler2, { once: true });
+
+    // Toggle back to light
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+
+    expect(eventDetail).not.toBe(null);
+    expect(eventDetail).toEqual({
+      previousScheme: DEFAULT_DARK,
+      currentScheme: DEFAULT_LIGHT,
+    });
+  });
+
+  it("dispatches colorSchemeChanged event when calling switchColorScheme directly", () => {
+    runSwitchScript();
+
+    let eventDetail = null;
+
+    // Listen for the custom event
+    const handler = (e) => {
+      eventDetail = e.detail;
+    };
+    document.addEventListener("colorSchemeChanged", handler, { once: true });
+
+    // Set initial scheme
+    localStorage.setItem("colorScheme", DEFAULT_LIGHT);
+
+    // Call switchColorScheme directly
+    window.inlineScripts.switchColorScheme();
+
+    expect(eventDetail).not.toBe(null);
+    expect(eventDetail).toEqual({
+      previousScheme: DEFAULT_LIGHT,
+      currentScheme: DEFAULT_DARK,
+    });
+  });
+
+  it("includes correct previousScheme in event detail when scheme was previously set", () => {
+    runSwitchScript();
+
+    // Set initial scheme to dark
+    localStorage.setItem("colorScheme", DEFAULT_DARK);
+    document.documentElement.classList.add(DEFAULT_DARK);
+
+    let eventDetail = null;
+
+    // Listen for the custom event
+    const handler = (e) => {
+      eventDetail = e.detail;
+    };
+    document.addEventListener("colorSchemeChanged", handler, { once: true });
+
+    // Toggle to light
+    dispatchKeydown(DEFAULT_TOGGLE_KEY);
+
+    expect(eventDetail).not.toBe(null);
+    expect(eventDetail).toEqual({
+      previousScheme: DEFAULT_DARK,
+      currentScheme: DEFAULT_LIGHT,
+    });
   });
 });
