@@ -160,6 +160,19 @@ You can use it, for example, in a button click handler:
 </button>
 ```
 
+## Custom event: colorSchemeChanged
+
+The script dispatches a custom event whenever the theme changes, which you can listen to:
+
+```javascript
+document.addEventListener('colorSchemeChanged', (event) => {
+    console.log('Previous scheme:', event.detail.previousScheme);
+    console.log('Current scheme:', event.detail.currentScheme);
+});
+```
+
+This is useful if you need to perform additional actions when the theme changes.
+
 ## File structure
 
 ```

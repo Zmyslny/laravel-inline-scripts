@@ -13,8 +13,8 @@ Allows ✨:
 - process / modify the script in a dedicated PHP class.
 
 Additionally - has build in **ready-to-use** scripts:
- - two states - light / dark - color scheme switching script _(+ view with icons)_
- - three states - light / dark / system - color scheme switching script _(+ view with icons)_
+ - [two states](scrips/ColorSchemeSwitchThreeStates/README.md) - light / dark - color scheme switching script _(+ view with icons)_
+ - [three states](scrips/ColorSchemeSwitchThreeStates/README.md) - light / dark / system - color scheme switching script _(+ view with icons)_
  - _more to come_
 
 ### Requirements
@@ -89,11 +89,11 @@ Modern websites often provide users with the ability to switch between light and
 
 The folowing example demonstrates by using **two-state** color scheme switch script (light/dark). 
 
-**Three-state** (light/dark/system) is also available. Just replace `2-states- | ..TwoStates` with `3-states- | ..ThreeStates` in the commands and code below.
-
 > **Icons used** (from [HeroIcons](https://heroicons.com)):
 >
-> ![View](assets/3-states-hero-icons.gif)
+> ![View](assets/2-states-hero-icons.gif)
+
+**Three-state** (light/dark/system) is also available. Just replace `2-states- | ..TwoStates` with `3-states- | ..ThreeStates` in the commands and code below.
 
 
 ### Using prepared PHP classes
