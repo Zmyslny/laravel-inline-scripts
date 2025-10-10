@@ -1,39 +1,47 @@
 # Color Scheme Switch - Two States (Light/Dark)
 
-Skrypt do przełączania między dwoma motywami kolorystycznymi: jasnym (light) i ciemnym (dark).
+A script for switching between two color schemes: light and dark.
 
-## Co robi ten skrypt?
+> **Icons used** (from [HeroIcons](https://heroicons.com)):
+>
+> ![View](/../assets/2-states-hero-icons.gif)
 
-Skrypt zapewnia funkcjonalność przełączania między jasnym i ciemnym motywem na stronie internetowej, z zachowaniem preferencji użytkownika w `localStorage`. Składa się z dwóch części:
+## What does this script do?
 
-### 1. InitScript - Inicjalizacja motywu przy ładowaniu strony
+The script provides functionality for switching between light and dark themes on a website, while preserving user preferences in `localStorage`. It consists of three parts:
 
-**Plik:** `init-script.js`
+### 1. InitScript - Theme initialization on page load
 
-Skrypt uruchamia się **przed wyrenderowaniem strony** (inline w `<head>`), aby uniknąć efektu **FOUC** (Flash of Unstyled Content).
+**File:** `init-script.js`
 
-**Działanie:**
-- Sprawdza `localStorage.colorScheme` i jeśli użytkownik wcześniej wybrał motyw, go stosuje
-- Jeśli brak zapisanej preferencji, sprawdza systemowe ustawienia (`prefers-color-scheme`)
-- Dodaje klasę `dark` do `document.documentElement` gdy motyw ciemny jest aktywny
+The script runs **before the page renders** (inline in `<head>`) to avoid **FOUC** (Flash of Unstyled Content).
 
-### 2. SwitchScript - Przełączanie motywu
+**Behavior:**
+- Checks `localStorage.colorScheme` and if the user has previously selected a theme, applies it
+- If there's no saved preference, checks system settings (`prefers-color-scheme`)
+- Adds the `dark` class to `document.documentElement` when dark theme is active
 
-**Plik:** `switch-script.js`
+### 2. SwitchScript - Theme switching
 
-Skrypt umożliwia przełączanie między motywami poprzez skrót klawiszowy (domyślnie klawisz `d`).
+**File:** `switch-script.js`
 
-**Działanie:**
-- Udostępnia funkcję `window.inlineScripts.switchColorScheme()` do programowego przełączania motywu
-- Nasłuchuje skrótu klawiszowego (domyślnie `d`) i przełącza motyw
-- Zapisuje wybraną preferencję w `localStorage`
-- Inteligentnie ignoruje naciśnięcia klawisza gdy fokus jest na polach input, textarea, select lub elementach z contentEditable
+The script enables switching between themes via keyboard shortcut (default key `d`).
 
-## Użycie
+**Behavior:**
+- Exposes the `window.inlineScripts.switchColorScheme()` function for programmatic theme switching
+- Listens for keyboard shortcut (default `d`) and switches the theme
+- Saves the selected preference in `localStorage`
+- Intelligently ignores key presses when focus is on input, textarea, select fields or elements with contentEditable
 
-### Metoda 1: Przy użyciu klas PHP (zalecane)
+### 3. View with color scheme icons
 
-**Krok 1:** Dodaj do swojego `AppServiceProvider`:
+A Blade view with light/dark theme icons that call the `window.inlineScripts.switchColorScheme()` function when clicked.
+
+## Usage
+
+### Method 1: Using PHP classes
+
+**Step 1:** Add to your `AppServiceProvider`:
 
 ```php
 use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchTwoStates\InitScript;
@@ -44,14 +52,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void 
     {
         BladeInlineScripts::take(
-            new InitScript(), // inicjalizuje motyw przy ładowaniu strony
-            new SwitchScript('d') // przełącza motyw po naciśnięciu klawisza 'd'
+            new InitScript(), // initializes the theme on page load
+            new SwitchScript('d') // switches the theme when 'd' key is pressed
         )->registerAs('colorSchemeScripts');
     }
 }
 ```
 
-**Krok 2:** Wstaw dyrektywę Blade w swoim szablonie:
+**Step 2:** Insert the Blade directive in your template:
 
 ```blade
 <html>
@@ -63,27 +71,27 @@ class AppServiceProvider extends ServiceProvider
     ...
 ``` 
 
-**Krok 3 (opcjonalnie):** Dodaj widok z ikonami motywów:
+**Step 3:** Add the view with theme icons:
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-views
 ```
 
-Wybierz odpowiedni widok i wstaw go w swoim szablonie:
+Select the appropriate view and insert it in your template:
 - Blade + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php`
 - Livewire/Alpine + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind-alpine.blade.php`
 
-### Metoda 2: Bezpośrednie użycie plików JS
+### Method 2: Direct JS file usage
 
-**Krok 1:** Opublikuj wbudowane skrypty:
+**Step 1:** Publish the built-in scripts:
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-js
 ```
 
-Skopiuje to skrypty do `resources/js/color-scheme-switch-two-states/[init-script.js, switch-script.js]`.
+This will copy the scripts to `resources/js/color-scheme-switch-two-states/[init-script.js, switch-script.js]`.
 
-**Krok 2:** Zarejestruj skrypty w `AppServiceProvider`:
+**Step 2:** Register the scripts in `AppServiceProvider`:
 
 ```php
 class AppServiceProvider extends ServiceProvider 
@@ -93,7 +101,7 @@ class AppServiceProvider extends ServiceProvider
         BladeInlineScripts::takeFiles(
             [
                 resource_path('js/color-scheme-switch-two-states/init-script.js'),
-                ['__DARK__' => 'dark'], // zmienne do zastąpienia w skrypcie
+                ['__DARK__' => 'dark'], // variables to replace in the script
             ],
             [
                 resource_path('js/color-scheme-switch-two-states/switch-script.js'),
@@ -104,23 +112,23 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-**Krok 3:** Wstaw dyrektywę Blade w swoim szablonie (tak samo jak w Metodzie 1).
+**Step 3:** Insert the Blade directive in your template (same as in Method 1).
 
-## Konfiguracja
+## Configuration
 
-### Zmiana klawisza przełączania
+### Changing the toggle key
 
-Domyślnie skrypt używa klawisza `d` do przełączania motywów. Możesz to zmienić przekazując inny klawisz do konstruktora `SwitchScript`:
+By default, the script uses the `d` key to switch themes. You can change this by passing a different key to the `SwitchScript` constructor:
 
 ```php
-new SwitchScript('t') // użyj klawisza 't' zamiast 'd'
+new SwitchScript('t') // use 't' key instead of 'd'
 ```
 
-**Wymagania:** Klawisz musi być pojedynczą małą literą (a-z).
+**Requirements:** The key must be a single lowercase letter (a-z).
 
-### Zmiana nazw klas CSS
+### Changing CSS class names
 
-Domyślnie skrypt dodaje klasę `dark` do elementu `<html>`. Możesz to zmienić edytując wartości w enumie `SchemeTypeEnum`:
+By default, the script adds the `dark` class to the `<html>` element. You can change this by editing the values in the `SchemeTypeEnum` enum:
 
 ```php
 enum SchemeTypeEnum: string
@@ -130,66 +138,66 @@ enum SchemeTypeEnum: string
 }
 ```
 
-Lub przy użyciu bezpośrednich plików JS, zmieniając placeholdery:
+Or when using direct JS files, by changing the placeholders:
 
 ```php
 ['__DARK__' => 'dark-mode', '__LIGHT__' => 'light-mode']
 ```
 
-## Programowe przełączanie motywu
+## Programmatic theme switching
 
-Skrypt udostępnia funkcję do programowego przełączania motywu:
+The script exposes a function for programmatic theme switching:
 
 ```javascript
 window.inlineScripts.switchColorScheme();
 ```
 
-Możesz jej użyć np. w obsłudze kliknięcia przycisku:
+You can use it, for example, in a button click handler:
 
 ```html
 <button onclick="window.inlineScripts.switchColorScheme()">
-    Przełącz motyw
+    Toggle theme
 </button>
 ```
 
-## Struktura plików
+## File structure
 
 ```
 ColorSchemeSwitchTwoStates/
-├── InitScript.php              # Klasa PHP do inicjalizacji motywu
-├── SwitchScript.php            # Klasa PHP do przełączania motywu
-├── SchemeTypeEnum.php          # Enum z wartościami motywów (dark/light)
+├── InitScript.php              # PHP class for theme initialization
+├── SwitchScript.php            # PHP class for theme switching
+├── SchemeTypeEnum.php          # Enum with theme values (dark/light)
 ├── js/
-│   ├── init-script.js          # Skrypt inicjalizacji (inline w <head>)
-│   └── switch-script.js        # Skrypt przełączania (inline w <head>)
+│   ├── init-script.js          # Initialization script (inline in <head>)
+│   └── switch-script.js        # Switching script (inline in <head>)
 └── view/
-    ├── hero-icons-tailwind.blade.php        # Widok z ikonami (Blade + Tailwind)
-    └── hero-icons-tailwind-alpine.blade.php # Widok z ikonami (Alpine + Tailwind)
+    ├── hero-icons-tailwind.blade.php        # View with icons (Blade + Tailwind)
+    └── hero-icons-tailwind-alpine.blade.php # View with icons (Alpine + Tailwind)
 ```
 
-## Jak to działa?
+## How does it work?
 
-1. **Przy ładowaniu strony:** `init-script.js` sprawdza zapisaną preferencję lub preferencje systemowe i natychmiast aplikuje odpowiedni motyw
-2. **Przełączanie:** Po naciśnięciu skrótu klawiszowego, `switch-script.js` przełącza klasę `dark` i zapisuje wybór w `localStorage`
-3. **Następne wizyty:** Przy kolejnym ładowaniu strony, `init-script.js` odczyta zapisaną preferencję i zastosuje ją przed wyrenderowaniem strony
+1. **On page load:** `init-script.js` checks the saved preference or system preferences and immediately applies the appropriate theme
+2. **Switching:** After pressing the keyboard shortcut or clicking the icons, `switch-script.js` toggles the `dark` class and saves the choice in `localStorage`
+3. **Subsequent visits:** On the next page load, `init-script.js` will read the saved preference and apply it before the page renders
 
-## Testowanie
+## Testing
 
-Możesz opublikować testy jednostkowe dla skryptów JS:
+You can publish unit tests for the JS scripts:
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-js-tests
 ```
 
-Lub opublikować wszystko naraz (skrypty JS, testy i widoki):
+Or publish everything at once (JS scripts, tests, and views):
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-all
 ```
 
-## Różnica między Two States a Three States
+## Difference between Two States and Three States
 
-- **Two States:** Przełączanie między jasnym i ciemnym motywem (2 stany)
-- **Three States:** Przełączanie między jasnym, ciemnym i systemowym motywem (3 stany)
+- **Two States:** Switching between light and dark theme (2 states)
+- **Three States:** Switching between light, dark, and system theme (3 states)
 
-Jeśli potrzebujesz opcji "auto/system", użyj wariantu Three States.
+If you need an "auto/system" option, use the Three States variant.
