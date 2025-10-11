@@ -12,7 +12,7 @@ Allows ✨:
 - passing variables from PHP to JavaScript,
 - process / modify the script in a dedicated PHP class.
 
-Additionally - has build in **ready-to-use** scripts:
+Additionally - has build in **ready-to-use** scripts (built using this package):
  - [two states](scripts/ColorSchemeSwitchThreeStates/README.md) - light / dark - color scheme switching script _(+ view with icons)_
  - [three states](scripts/ColorSchemeSwitchThreeStates/README.md) - light / dark / system - color scheme switching script _(+ view with icons)_
  - _more to come_
