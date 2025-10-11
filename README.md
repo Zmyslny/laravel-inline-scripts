@@ -83,6 +83,24 @@ This package makes it much more convenient by allowing you to keep inline script
 - **Unit testing** : your JavaScript code using tools like Vitest or Jest _(see [bonus section](#bonus))_
 - **IDE support** : with syntax highlighting and error detection in dedicated JS files _(see [example bellow](#using-js-code-directly))_
 
+## Advanced Usage: Custom Script Processing
+
+Want to do more advanced processing of your JavaScript code before inlining it?
+
+Create a PHP class:
+- that implements the `RenderableScript` interface - using it you can fetch / prepare / create JS code in any way you want;
+- and place it in `BladeInlineScripts::take(...)` method.
+
+Use interface `ScriptWithPlaceholders` for scripts with placeholders to be replaced with variables.
+
+Want to load JS code from a file? Extend the abstract class `FromFile` or `FromFileWithPlaceholders`.
+
+```php
+abstract class FromFile implements RenderableScript;
+
+abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders;
+```
+
 # Explanation Through Example: Color scheme switch script
 
 Modern websites often provide users with the ability to switch between light and dark themes. In such cases, you might want to remember the user's choice using `localStorage` and apply the selected theme on page load. To avoid **FOUC** (Flash of Unstyled Content), you can use _inline script_ to set the theme before the page fully loads.
@@ -194,24 +212,6 @@ php artisan vendor:publish --tag=color-scheme-2-states-views
 Select the one that suits your frontend and insert it in your template:
 - Blade + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind.blade.php`
 - Livewire/Alpine + TailwindCss + Hero icons: `../views/color-scheme-switch-two-states/hero-icons-tailwind-alpine.blade.php`
-
-## Advanced Usage: Custom Script Processing
-
-Want to do more advanced processing of your JavaScript code before inlining it?
-
-Create a PHP class:
-- that implements the `RenderableScript` interface - using it you can fetch / prepare / create JS code in any way you want;
-- and place it in `BladeInlineScripts::take(...)` method.
-
-Use interface `ScriptWithPlaceholders` for scripts with placeholders to be replaced with variables.
-
-Want to load JS code from a file? Extend the abstract class `FromFile` or `FromFileWithPlaceholders`.
-
-```php
-abstract class FromFile implements RenderableScript;
-
-abstract class FromFileWithPlaceholders implements ScriptWithPlaceholders;
-```
 
 ## Bonus
 
