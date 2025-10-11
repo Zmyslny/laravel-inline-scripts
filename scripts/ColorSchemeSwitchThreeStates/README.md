@@ -4,7 +4,7 @@ A script for switching between three color schemes: light, dark, and system pref
 
 > **Icons used** (from [HeroIcons](https://heroicons.com)):
 >
-> ![View](/../assets/3-states-hero-icons.gif)
+> ![View](../../assets/3-states-hero-icons.gif)
 
 ## What does this script do?
 

@@ -89,7 +89,7 @@ Want to do more advanced processing of your JavaScript code before inlining it?
 
 Create a PHP class:
 - that implements the `RenderableScript` interface - using it you can fetch / prepare / create JS code in any way you want;
-- and place it in `BladeInlineScripts::take(...)` method.
+- and register it using `BladeInlineScripts::take(...)` method.
 
 Use interface `ScriptWithPlaceholders` for scripts with placeholders to be replaced with variables.
 
