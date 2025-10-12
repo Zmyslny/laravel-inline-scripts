@@ -203,7 +203,7 @@ class AppServiceProvider extends ServiceProvider
 
 Now hit the `d` key to toggle between a light and dark color scheme, and your choice will be remembered on subsequent visits.
 
-**Step 3 (optional)**: Add the view with color scheme icons to your website:
+**Step 4 (optional)**: Add the view with color scheme icons to your website:
 
 ```bash
 php artisan vendor:publish --tag=color-scheme-2-states-views
