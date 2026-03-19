@@ -246,7 +246,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (two states)", () => {
 
     expect(eventDetail).not.toBe(null);
     expect(eventDetail).toEqual({
-      previousScheme: undefined,
+      previousScheme: null,
       currentScheme: DEFAULT_DARK,
     });
 

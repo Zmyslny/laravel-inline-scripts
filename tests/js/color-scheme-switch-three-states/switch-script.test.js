@@ -220,7 +220,7 @@ describe("ColorSchemeSwitchScript.js IIFE behavior (three states)", () => {
 
       expect(eventListener).toHaveBeenCalledTimes(1);
       const event = eventListener.mock.calls[0][0];
-      expect(event.detail.previousScheme).toBeUndefined();
+      expect(event.detail.previousScheme).toBeNull();
       expect(event.detail.currentScheme).toBe(DEFAULT_DARK);
 
       document.removeEventListener("colorSchemeChanged", eventListener);

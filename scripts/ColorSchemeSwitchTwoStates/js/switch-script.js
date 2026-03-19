@@ -9,21 +9,21 @@
   };
 
   window.inlineScripts.switchColorScheme = function () {
-    const previousScheme = localStorage.colorScheme;
+    const previousScheme = localStorage.getItem("colorScheme");
     const isDark = document.documentElement.classList.contains("__DARK__");
 
     if (isDark) {
       setColorScheme("__LIGHT__");
-      localStorage.colorScheme = "__LIGHT__";
+      localStorage.setItem("colorScheme", "__LIGHT__");
     } else {
       setColorScheme("__DARK__");
-      localStorage.colorScheme = "__DARK__";
+      localStorage.setItem("colorScheme", "__DARK__");
     }
 
     const event = new CustomEvent("colorSchemeChanged", {
       detail: {
         previousScheme: previousScheme,
-        currentScheme: localStorage.colorScheme,
+        currentScheme: localStorage.getItem("colorScheme"),
       },
     });
 

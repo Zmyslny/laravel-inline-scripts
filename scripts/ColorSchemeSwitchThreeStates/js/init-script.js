@@ -6,9 +6,11 @@
     );
   };
 
-  if (localStorage.colorScheme === "__DARK__") {
+  const storedScheme = localStorage.getItem("colorScheme");
+
+  if (storedScheme === "__DARK__") {
     setColorScheme("__DARK__");
-  } else if (localStorage.colorScheme === "__LIGHT__") {
+  } else if (storedScheme === "__LIGHT__") {
     // do nothing, default is light
   } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     setColorScheme("__DARK__");

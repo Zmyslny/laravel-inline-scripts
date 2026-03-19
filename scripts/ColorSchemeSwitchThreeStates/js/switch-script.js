@@ -9,13 +9,13 @@
   };
 
   window.inlineScripts.switchColorScheme = function () {
-    const previousScheme = localStorage.colorScheme;
+    const previousScheme = localStorage.getItem("colorScheme");
 
     // Cycle: Dark -> Light -> System -> Dark -> ...
-    if (localStorage.colorScheme === "__DARK__") {
+    if (previousScheme === "__DARK__") {
       setColorScheme("__LIGHT__");
-      localStorage.colorScheme = "__LIGHT__";
-    } else if (localStorage.colorScheme === "__LIGHT__") {
+      localStorage.setItem("colorScheme", "__LIGHT__");
+    } else if (previousScheme === "__LIGHT__") {
       // System preference
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         setColorScheme("__DARK__");
@@ -25,13 +25,13 @@
       localStorage.removeItem("colorScheme");
     } else {
       setColorScheme("__DARK__");
-      localStorage.colorScheme = "__DARK__";
+      localStorage.setItem("colorScheme", "__DARK__");
     }
 
     const event = new CustomEvent("colorSchemeChanged", {
       detail: {
         previousScheme: previousScheme,
-        currentScheme: localStorage.colorScheme,
+        currentScheme: localStorage.getItem("colorScheme"),
       },
     });
 
