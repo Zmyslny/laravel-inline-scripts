@@ -177,6 +177,10 @@ test('published files have correct destination paths', function (): void {
             expect($destination)->toContain('tests/js/color-scheme-switch-two-states');
         } elseif (str_contains($source, 'tests/js/color-scheme-switch-three-states')) {
             expect($destination)->toContain('tests/js/color-scheme-switch-three-states');
+        } elseif (str_contains($source, 'scripts/LivewireNavAdapter/js')) {
+            expect($destination)->toContain('resources/js/livewire-nav-adapter');
+        } elseif (str_contains($source, 'tests/js/livewire-nav-adapter')) {
+            expect($destination)->toContain('tests/js/livewire-nav-adapter');
         } else {
             expect(false)->toBeTrue(); // Fail the test if an unexpected file is found
         }
