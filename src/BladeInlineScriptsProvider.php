@@ -21,6 +21,8 @@ class BladeInlineScriptsProvider extends ServiceProvider
         $this->publishColorScheme2States();
 
         $this->publishColorScheme3States();
+
+        $this->publishLivewireNavAdapter();
     }
 
     public function publishColorScheme2States(): void
@@ -63,5 +65,16 @@ class BladeInlineScriptsProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../scripts/ColorSchemeSwitchThreeStates/view/hero-icons-tailwind.blade.php' => resource_path('views/color-scheme-switch-three-states/hero-icons-tailwind.blade.php'),
         ], ['color-scheme-3-states-views', 'color-scheme-3-states-all']);
+    }
+
+    public function publishLivewireNavAdapter(): void
+    {
+        $this->publishes([
+            __DIR__.'/../scripts/LivewireNavAdapter/js/livewire-nav-adapter.js' => resource_path('js/livewire-nav-adapter/livewire-nav-adapter.js'),
+        ], ['livewire-nav-adapter-js', 'livewire-nav-adapter-all']);
+
+        $this->publishes([
+            __DIR__.'/../tests/js/livewire-nav-adapter/livewire-nav-adapter.test.js' => base_path('tests/js/livewire-nav-adapter/livewire-nav-adapter.test.js'),
+        ], ['livewire-nav-adapter-js-tests', 'livewire-nav-adapter-all']);
     }
 }
