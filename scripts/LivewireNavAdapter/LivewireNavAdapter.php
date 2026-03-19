@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Zmyslny\LaravelInlineScripts\Ready\LivewireNavAdapter;
 
-use Zmyslny\LaravelInlineScripts\Ready\ColorSchemeSwitchThreeStates\SchemeTypeEnum;
 use Zmyslny\LaravelInlineScripts\Script\FromFileWithPlaceholders;
 
 class LivewireNavAdapter extends FromFileWithPlaceholders
