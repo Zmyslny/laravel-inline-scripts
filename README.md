@@ -11,9 +11,9 @@ Allows ✨:
 - process / modify the script in a dedicated PHP class.
 
 Additionally - has build in **ready-to-use** scripts (built using this package):
- - [two states](scripts/ColorSchemeSwitchThreeStates/README.md) - light / dark - color scheme switching script _(+ view with icons)_
+ - [two states](scripts/ColorSchemeSwitchTwoStates/README.md) - light / dark - color scheme switching script _(+ view with icons)_
  - [three states](scripts/ColorSchemeSwitchThreeStates/README.md) - light / dark / system - color scheme switching script _(+ view with icons)_
- - _more to come_
+ - [LivewireNavAdapter](scripts/LivewireNavAdapter/README.md) - navigation state adapter for Livewire
 
 ### Requirements
 
