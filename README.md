@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
     {
         BladeInlineScripts::take(
             new InitScript(),
-            new SwitchScript('d') // toggle with 'd' key
+            new SwitchScript('d') // toggle with 'd' key to switch between dark & light modes
         )->registerAs('colorScheme');
     }
 }
