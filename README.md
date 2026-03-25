@@ -18,7 +18,7 @@ Additionally - has build in **ready-to-use** scripts (built using this package):
 ### Requirements
 
 - PHP 8.2 or newer
-- Laravel 9.x or newer (did not test with older versions)
+- Laravel 9.x or newer (wasn't tested with the older versions)
 
 ## 🚀 Quick Start
 
