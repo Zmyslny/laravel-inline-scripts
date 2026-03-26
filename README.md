@@ -4,7 +4,7 @@
     <a href="https://packagist.org/packages/zmyslny/laravel-inline-scripts"><img src="https://poser.pugx.org/zmyslny/laravel-inline-scripts/v/stable.svg" alt="Latest Version"></a>
 </p>
 
-A Laravel package that provides a simple way to wrap your JavaScript code stored in a file and inline it as custom Blade directive.  
+A Laravel package that provides a simple way to wrap JavaScript code stored in a file into a PHP class and inline it using a custom Blade directive. The PHP wrapper class also allows you to modify the script before inlining (for example, by replacing placeholders).
 
 Allows ✨:
 - passing variables from PHP to JavaScript,
